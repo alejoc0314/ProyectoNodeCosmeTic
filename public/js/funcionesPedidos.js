@@ -79,7 +79,7 @@ const validateForm = () => {
       document.getElementById('texto5').innerHTML = '';
       return true;
     }
-  }  
+  }
   validateCliente();
   validateVendedor();
   validateFecha();
