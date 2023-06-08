@@ -128,15 +128,51 @@
                                     </div>
                                 <div class="texto6" id="texto6"></div>
                             </div>
+<!--tabla donde se van a ir agregando los productos de la compra -->
+                                        <div class="card-body">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio Compra</th>
+                                                        <th>Precio Venta</th>
+                                                        <th>Categoria</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each lista_compras}}
+                                                    <tr>
+                                                        <td>{{ producto }}</td>
+                                                        <td>{{ cantidad }}</td>
+                                                        <td>{{ precioCompra }}</td>
+                                                        <td>{{ precioVenta }}</td>
+                                                        <td>{{ categoria }}</td>
+                                                        <td>
+                                                            <button><i class="sendbtn btn btn-success" id="eliminarP" type="button" value="eliminarProducto"></i></button>
+                                                            <button><i class="sendbtn btn btn-success" id="editarP" type="button" value="editarProducto"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
 
                                  <div class="row"></div>
                                     <div class="col-lg-12">
                                             
                                                <input class="sendbtn btn btn-success" id="registrar" type="button" value="Registrar" onclick= "validateForm()">
-                                           
-                                                
+                                        
                                         <br>
                                       <script type="text/javascript" src="js/funcionesCompras.js"></script>
+                                    </div>
+                                         <div class="col-lg-12">
+                                            
+                                               <input class="sendbtn btn btn-success" id="cancelar" type="button" value="Cancelar">
+                                        
+                                        <br>
+                                     
                                     
                                     
                                     </div>
