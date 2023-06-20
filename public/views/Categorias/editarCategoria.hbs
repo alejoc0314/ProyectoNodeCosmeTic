@@ -19,6 +19,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+     <script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
     <div class="wrapper">
         {{> navbar}}
 
@@ -63,8 +64,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="categoria">Nombre</label>
-                                        <input type="categoria" class="form-control" id="categoria"
+                                        <label for="nombrecat">Nombre</label>
+                                        <input oninput="validatecategoria()" type="nombrecat" class="form-control" id="nombrecat"
                                             placeholder="Digite la categoria" style="width: 100%;" />
                                     </div>
                                     <div class="texton" id="texton"></div>
@@ -94,7 +95,7 @@
                                             <a class="btn btn-success" href="">
                                             Registrar</a>
 
-                                       <script type="text/javascript" src="js/funcionesCategorias.js"></script>
+                                      
                                        <button class="sendbtn btn btn-danger ml-2" id="cancelar">Cancelar</button>
 
 <script>
