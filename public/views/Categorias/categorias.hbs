@@ -74,11 +74,12 @@
                                             <tr>
                                                 <td>{{ id_categoria }}</td>
                                                 <td>{{ nombre_categoria }}</td>
-                                                <td>{{ estado_categoria }}</td>
+                                                <td>{{estado.categoria}}</td>
                                                 <td>{{ observacion_categoria }}</td>
 
                                                 <td>
-                                                    <a class='btn btn-primary' href="../Categorias/editarCategoria.hbs" ><i class="bi bi-pencil-square"></i></a>
+                                                    <a class='btn btn-primary' href="/editarCategoria" ><i class="bi bi-pencil-square"></i></a>
+                                                    <a class="btn btn-warning" ><i class="bi bi-toggle-on"></i></td></a>
                                                 </td>
                                             </tr>
                                             {{/each}}
@@ -138,23 +139,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
     <!-- Page specific script -->
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
+
 </body>
 
 </html>

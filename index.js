@@ -180,6 +180,14 @@ app.get('/registroCategorias', (req, res) => {
     });
 })
 
+app.get('/editarCategoria', (req, res) => {
+    
+    res.render('Categorias/editarCategoria', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Marcela Morales', 
+        consecutivo: 'editarCategorias'
+    });
+})
 
 
 // pagina de categorias
