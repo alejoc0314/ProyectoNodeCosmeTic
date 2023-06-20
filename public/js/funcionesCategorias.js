@@ -30,3 +30,23 @@ const validatecategoria = () => {
     return true;
   }
 };
+
+function showMessage() {
+  alert("La categoría se ha actualizado con éxito");
+ 
+}
+function showConfirmationDialog() {
+  const observacion = prompt("¿Está seguro que desea cambiar el estado de esta categoría?\nIngrese una observación:");
+
+  if (observacion !== null) {
+      // Actualizar el campo de observación con el valor ingresado
+      document.getElementById('observacion').value = observacion;
+
+      // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+  }
+}
+function showMessageRegis() {
+  alert("La categoría se ha registrado con éxito");
+ 
+}
+

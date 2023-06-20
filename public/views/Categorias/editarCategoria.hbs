@@ -92,17 +92,20 @@
 
                                  <div class="row"></div>
                                     <div class="col-lg-12">
-                                            <a class="btn btn-success" href="">
-                                            Registrar</a>
+                                            <a class="btn btn-success" id="actualizar" onclick="showMessage()">
+                                            Actualizar</a>
 
                                       
                                        <button class="sendbtn btn btn-danger ml-2" id="cancelar">Cancelar</button>
 
-<script>
-  document.getElementById('cancelar').addEventListener('click', function() {
-    window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
-  });
-</script>
+                                                <script>
+                                                document.getElementById('cancelar').addEventListener('click', function() {
+                                                    window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
+                                                });
+                                                  document.getElementById('actualizar').addEventListener('click', function() {
+                                                    window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
+                                                });
+                                                </script>
                                     </div>
                                 <!-- /.card-body -->
                             </div>

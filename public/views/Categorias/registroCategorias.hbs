@@ -92,7 +92,7 @@
 
                                  <div class="row"></div>
                                     <div class="col-lg-12">
-                                            <a class="btn btn-success" href="">
+                                            <a class="btn btn-success" id="registrar" onclick="showMessageRegis()"> 
                                             Registrar</a>
 
                                        
@@ -102,6 +102,10 @@
                                             document.getElementById('cancelar').addEventListener('click', function() {
                                                 window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
                                             });
+
+                                               document.getElementById('registrar').addEventListener('click', function() {
+                                                    window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
+                                                });
                                             </script>
                                     </div>
                                 <!-- /.card-body -->
