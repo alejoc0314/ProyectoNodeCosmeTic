@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 })
 
 
+
 // Página de login
 
 app.get('/dashboard', (req, res) => {
@@ -55,6 +56,18 @@ app.get('/home', (req, res) => {
         consecutivo: 'Home'
     });
 })
+
+app.get('/recuperar', (req, res) => {
+    
+    res.render('recuperar', { 
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño', 
+        consecutivo: 'Recuperar'
+    });
+})
+
+
+
 
 
 // Página de Registro de empleado
