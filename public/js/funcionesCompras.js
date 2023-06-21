@@ -181,6 +181,15 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
    
    
   };
-  
-  exports.validateForm = validateForm;
 
+
+  function showConfirmationDialog() {
+    const observacion = prompt("¿Está seguro que desea anular esta compra?\nIngrese una observación:");
+  
+    if (observacion !== null) {
+        // Actualizar el campo de observación con el valor ingresado
+        document.getElementById('observacion').value = observacion;
+  
+        // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+    }
+  }
