@@ -66,7 +66,24 @@ app.get('/recuperar', (req, res) => {
     });
 })
 
+app.get('/registarUsuario', (req, res) => {
+    
+    res.render('registarUsuario', { 
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño', 
+        consecutivo: 'Registrar'
+    });
+})
 
+
+app.get('/cambiarClave', (req, res) => {
+    
+    res.render('cambiarClave', { 
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño', 
+        consecutivo: 'Registrar'
+    });
+})
 
 
 

@@ -38,25 +38,46 @@
         <p class="login-box-msg">Recuperar Contraseña</p>
 
         <form>
+    
+           
           <div class="form-group">
-            <label for="email">Correo Electrónico</label>
+            <label for="newPassword">Contraseña Nueva</label>
             <div class="input-group mb-3">
-              <input type="email" class="form-control" id="email" placeholder="Email">
+              <input type="password" class="form-control" id="newPassword" placeholder="Contraseña Nueva">
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar Contraseña</label>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-12 centered-button">
-              <button type="button" class="btn btn-primary wide-button" onclick="login()" id="recuperar" >Enviar Link</button>
-              
-<script>
-  document.getElementById('recuperar').addEventListener('click', function() {
-    window.location.href = '/cambiarClave'; // Reemplaza '/compras' con la URL de la lista de compras
+            <div class="col-6">
+              <a href="/login" class="btn btn-danger wide-button" id="cancelar">Cancelar</a>
+              <script>
+  document.getElementById('cancelar').addEventListener('click', function() {
+    window.location.href = '/'; // Reemplaza '/compras' con la URL de la lista de compras
+  });
+</script>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary wide-button" onclick="login()" id="guardar">Guardar</button>
+                            <script>
+  document.getElementById('guardar').addEventListener('click', function() {
+    window.location.href = '/'; // Reemplaza '/compras' con la URL de la lista de compras
   });
 </script>
             </div>
@@ -65,19 +86,4 @@
           <script src="../js/sesion.js"></script>
         </form>
 
-        <!-- /.social-auth-links -->
-      </div>
-      <!-- /.login-card-body -->
-    </div>
-  </div>
-  <!-- /.login-box -->
-
-  <!-- jQuery -->
-  <script src="/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>   
-  <!-- AdminLTE App -->
-  <script src="/js/adminlte.min.js"></script>
-</body>
-</html>
-
+        <!-- /.social-auth-links
