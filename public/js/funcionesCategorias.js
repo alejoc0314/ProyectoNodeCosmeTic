@@ -31,22 +31,79 @@ const validatecategoria = () => {
   }
 };
 
-function showMessage() {
-  alert("La categoría se ha actualizado con éxito");
- 
+
+
+function showRegistrar() {
+  Swal.fire({
+    title: 'La categoría se ha registrado con éxito',
+    icon: 'success',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Ok',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    allowEnterKey: false,
+    focusConfirm: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Redirigir a la vista de categorías
+      window.location.href = '/categorias';
+    }
+  });
 }
-function showConfirmationDialog() {
-  const observacion = prompt("¿Está seguro que desea cambiar el estado de esta categoría?\nIngrese una observación:");
 
-  if (observacion !== null) {
-      // Actualizar el campo de observación con el valor ingresado
-      document.getElementById('observacion').value = observacion;
 
-      // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+
+  function showConfirmationDialog() {
+    Swal.fire({
+      title: '¿Estás seguro de cambiar el estado?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'Cancelar',
+      input: 'text',  // Agrega esta línea para mostrar el cuadro de texto
+      inputPlaceholder: 'Ingrese una observación',  // Agrega esta línea para establecer un texto de marcador de posición para el cuadro de texto
+      inputAttributes: {
+        autocapitalize: 'off'  // Agrega esta línea para desactivar la autocapitalización en el cuadro de texto
+      },
+      showLoaderOnConfirm: true,
+      preConfirm: (observacion) => {
+        if (observacion) {
+          // Actualizar el campo de observación con el valor ingresado
+          document.getElementById('observacion').value = observacion;
+          // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Enfocar automáticamente el campo de observación después de confirmar
+        document.getElementById('observacion').focus();
+      }
+    });
   }
-}
-function showMessageRegis() {
-  alert("La categoría se ha registrado con éxito");
- 
-}
+  
+
+
+  function showActualizar() {
+    Swal.fire({
+      title: 'La categoría se ha registrado con éxito',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+      focusConfirm: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirigir a la vista de categorías
+        window.location.href = '/categorias';
+      }
+    });
+  }
+  
 

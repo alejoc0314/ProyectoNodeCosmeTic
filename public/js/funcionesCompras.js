@@ -190,6 +190,19 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
         // Actualizar el campo de observación con el valor ingresado
         document.getElementById('observacion').value = observacion;
   
-        // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+        // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la compra
     }
   }
+
+  function showMessage() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Éxito',
+      text: 'La compra se ha registrado con éxito',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  }
+
