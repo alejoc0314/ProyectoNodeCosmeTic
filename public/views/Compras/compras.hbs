@@ -22,6 +22,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript"  src="/js/funcionesCompras.js"></script>
    <!-- SweetAlert2 CSS -->
 
@@ -59,22 +60,31 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Compras registrados en el sistema</h3>
+            <br>
+            <br>
             <div class="col-lg-12" style="float: right; width: 14%; margin-right: -0.5%">
               <a class="btn btn-success text-nowrap" href="/registrarCompra">Agregar Compra</a>
             </div>
-            <br>
+   
             <div class="col-lg-6" style="margin-top: 10px;">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar...">
+                <label for="searchInput">Buscar:</label>
+                <input type="text" id="searchInput" class="form-control"
+                placeholder="Ingrese término de búsqueda" style="width: 110%;">
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="bi bi-search"></i>
-                  </button>
+                  
                 </div>
+                
+                <br>
+  <div class="col-lg-12" style=" width: 20%; margin-left: 1%">
+    <button class="btn btn-success" id="btnGenerarExcel" >
+        <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar Excel
+    </button>
+    </div>
               </div>
             </div>
           </div>
-          <div class="row"></div>
+         
           <!-- /.card-header -->
           <div class="card-body">
             <table id="listaCompras" class="table table-bordered table-striped">
@@ -102,8 +112,8 @@
                   <td>{{ observacion }}</td>
                   <td>
                     <a class='btn btn-primary' data-toggle="modal" data-target="#detalleCompraModal"><i class="bi bi-eye-fill"></i></a>
-                    <a class='btn btn-danger' onclick="showConfirmationDialog()"><i class="bi bi-x-lg"></i></a>
-                    <a class='btn btn-dark' data-toggle="modal" data-target="#fotoModal"><i class="bi bi-image"></i></a>
+                    <a class='btn btn-danger' onclick="showAnular()"><i class="bi bi-x-lg"></i></a>
+                    <a class='btn btn-secondary' data-toggle="modal" data-target="#fotoModal"><i class="bi bi-image"></i></a>
                   </td>
                 </tr>
                 {{/each}}
@@ -118,11 +128,7 @@
     </div>
     <!-- /.row -->
   </div>
-  <div class="col-lg-12" style=" width: 16%; margin-left: 1%">
-    <button class="btn btn-success" id="btnGenerarExcel" >
-        <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar Excel
-    </button>
-    </div>
+  
   <!-- /.container-fluid -->
 </section>
 

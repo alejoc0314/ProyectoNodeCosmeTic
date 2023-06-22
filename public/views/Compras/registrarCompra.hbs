@@ -4,13 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     {{> header}}
     <title>{{titulo}}</title>
 </head>
-
 <body class="hold-transition sidebar-mini">
+    <script src="ruta/a/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
     <div class="wrapper">
        {{> navbar}}
 
@@ -34,46 +39,84 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                    
+
+<div class="card-body">
+    <div class="float-left d-flex align-items-center justify-content-end">
+        <div class="form-group m-0">
+            <a class="btn btn-dark d-flex align-items-center justify-content-center" id="addImageBtn">
+                <i class="bi bi-image m-0"></i>
+            </a>
+        </div>
+    </div>
+
+    <div id="imageDialog" style="display: none;">
+        <form id="imageForm" enctype="multipart/form-data">
+            <input type="file" id="imageInput" name="image" accept="image/*" />
+            <input type="submit" value="Cargar" />
+        </form>
+    </div>
+</div>
+
  <script>
-    $(document).ready(function() {
-        $('#addImageBtn').click(function() {
-            $('#imageDialog').dialog({
-                title: 'Cargar imagen',
-                modal: true,
-                width: 400,
-                height: 200,
-                buttons: {
-                    "Cancelar": function() {
-                        $(this).dialog('close');
+        $(document).ready(function() {
+            $('#addImageBtn').click(function() {
+                $('#imageDialog').dialog({
+                    title: 'Cargar imagen',
+                    modal: true,
+                    width: 400,
+                    height: 200,
+                    buttons: {
+                        "Cancelar": function() {
+                            $(this).dialog('close');
+                        }
+                    },
+                    close: function() {
+                        // Restablecer el formulario después de cerrar el cuadro de diálogo
+                        $('#imageForm')[0].reset();
                     }
-                },
-                close: function() {
-                    // Restablecer el formulario después de cerrar el cuadro de diálogo
-                    $('#imageForm')[0].reset();
-                }
+                });
+            });
+
+            // Manejar el envío del formulario para cargar la imagen
+            $('#imageForm').submit(function(e) {
+                e.preventDefault();
+
+                // Aquí puedes agregar la lógica para enviar la imagen al servidor
+                // utilizando Ajax u otro método de tu elección
+
+                // Después de enviar la imagen, cierra el cuadro de diálogo
+                $('#imageDialog').dialog('close');
             });
         });
+    </script>
 
-        // Manejar el envío del formulario para cargar la imagen
-        $('#imageForm').submit(function(e) {
-            e.preventDefault();
 
-            // Aquí puedes agregar la lógica para enviar la imagen al servidor
-            // utilizando Ajax u otro método de tu elección
-
-            // Después de enviar la imagen, cierra el cuadro de diálogo
-            $('#imageDialog').dialog('close');
-        });
-    });
-</script>
                         <div class="card-body">
-                            
-                            
+
                             <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                        <label for="fechaCompra">Fecha Compra</label>
+                                        <label for="numFactura">Número Factura*</label>
+                                        <input type="nombre" oninput="validatefechaCompra()"class="form-control" id="numFactura"
+                                            placeholder="Número de factura" style="width: 100%;" />
+                                        </div>
+                                   <div class="texto" id="textoc"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="totalCompra">Total Compra</label>
+                                        <input type="totalCompra" oninput="validatetotalCompra()" class="form-control" id="totalCompra"
+                                            placeholder="Digite su precio Compra" style="width: 100%;" />
+                                    </div>
+                                <div class="texto6" id="texto6"></div>
+                            
+                        </div>
+                            </div>
+  
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label for="fechaCompra">Fecha Compra*</label>
                                         <input type="nombre" oninput="validatefechaCompra()"class="form-control" id="fechaCompra"
                                             placeholder="Fecha Compra" style="width: 100%;" />
                                         </div>
@@ -84,7 +127,7 @@
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="fechaRegistro">Fecha Registro</label>
+                                        <label for="fechaRegistro">Fecha Registro*</label>
                                         <input type="nombre" oninput="validatefechaRegistro()" class="form-control" id="fechaRegistro"
                                             placeholder="Fecha Registro" style="width: 100%;" />
                                     </div>
@@ -98,15 +141,20 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="proveedor">Proveedor</label>
+                                        <label for="proveedor">Proveedor*</label>
                                         <input type="proveedor" oninput="validateproveedor()" class="form-control" id="proveedor"
                                             placeholder="Digite el Proveedor" style="width: 100%;" />
                                     </div>
                                     <div class="texto2" id="texto2"></div>
                                 </div>
                                 <!-- /.form-group -->
-                                <div class="col-md-6">
+                               
+                                <!-- /.form-group -->
+                       
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="producto">Producto</label>
                                         <input type="producto" oninput="validateproducto()" class="form-control" id="producto"
@@ -114,13 +162,6 @@
                                     </div>
                                     <div class="texto3" id="texto3"></div>
                                 </div>
-                                <!-- /.form-group -->
-                       
-                            </div>
-
-                            <div class="row">
-
-                                <!-- /.col -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="categoria">Categoria</label>
@@ -134,8 +175,11 @@
                                     </br>
                                     <!-- /.form-group -->
                                 </div>
-                                <div class="col-md-6">
+                               </div>
 
+                            <!-- /.col -->
+                            <div class="row">
+                            <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="precioCompra">Precio Compra</label>
                                         <input type="precioCompra" oninput="validateprecioCompra()" class="form-control" id="precioCompra"
@@ -144,11 +188,6 @@
                                     <!-- /.form-group -->
                                         <div class="texto5" id="texto5"></div>
                                 </div>
-                                
-                              </div>
-
-                            <!-- /.col -->
-                            <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -158,13 +197,7 @@
                                     </div>
                                     <div class="texto7" id="texto7"></div>
                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="totalCompra">Total Compra</label>
-                                        <input type="totalCompra" oninput="validatetotalCompra()" class="form-control" id="totalCompra"
-                                            placeholder="Digite su precio Compra" style="width: 100%;" />
-                                    </div>
-                                <div class="texto6" id="texto6"></div>
+                                
                             </div>
                             <div class="row">
                                <div class="col-md-6">
@@ -174,27 +207,28 @@
                                             placeholder="Observaciones" style="width: 100%;" />
                                     </div>
                                 <div class="texto6" id="texto6"></div>
-                            
-                        </div>
-
+                                </div>
+                              
+                                     </div>
 <!-- Cuadro de diálogo para cargar imagen -->
-<div id="imageDialog" style="display: none;">
-    <form id="imageForm" enctype="multipart/form-data">
-        <input type="file" id="imageInput" name="image" accept="image/*" />
-        <input type="submit" value="Cargar" />
-    </form>
-</div>
+                                <div id="imageDialog" style="display: none;">
+                                    <form id="imageForm" enctype="multipart/form-data">
+                                        <input type="file" id="imageInput" name="image" accept="image/*" />
+                                        <input type="submit" value="Cargar" />
+                                    </form>
+                                </div>
+   
 
-<!-- Script para abrir el cuadro de diálogo y cargar la imagen -->
-
-
-<div class="row"></div>
-<div class="col-lg-12">
-
-<input class="sendbtn btn btn-success float-right" id="registrarProducto" type="button" value="Registrar Producto" >
-
-</div>
 <!--tabla donde se van a ir agregando los productos de la compra -->
+  <div class="col-lg-12" style="float: right; width: 14%; margin-right: 3%">
+<div class="form-group">
+        <input class="sendbtn btn btn-success " id="registrarProducto" type="button" value="Registrar Producto">
+    </div>
+    </div>
+
+
+
+
 <div class="card-body">
 <table id="example1" class="table table-bordered table-striped">
 <thead>
@@ -227,8 +261,16 @@
 <div class="row"></div>
 <div class="col-lg-12">
 
-<input class="sendbtn btn btn-success float-right ml-2" id="registrar" type="button" value="Registrar" onclick= "validateForm()">
-<input class="sendbtn btn btn-danger float-right " id="cancelar" type="button" value="Cancelar">
+<input class="sendbtn btn btn-success float-right ml-2" id="registrar" type="button" value="Registrar" onclick= "showRegistrar()">
+<input class="sendbtn btn btn-secondary float-right " id="cancelar" type="button" value="Regresar">
+
+<script>
+document.getElementById('cancelar').addEventListener('click', function() {
+    window.location.href = '/categorias'; // Reemplaza '/compras' con la URL de la lista de compras
+});
+
+    
+</script>
 <br>
 <script type="text/javascript" src="js/funcionesCompras.js"></script>
 </div>
@@ -263,10 +305,8 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></scri>
-    <!-- Bootstrap 4 -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
     <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -280,12 +320,13 @@
     <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
-    <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
-    <!-- Page specific script -->
 
+    <!-- Scripts adicionales -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/funcionesCompras.js"></script>
 
     
 </body>

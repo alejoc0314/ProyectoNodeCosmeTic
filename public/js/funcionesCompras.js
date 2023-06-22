@@ -181,28 +181,76 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
    
    
   };
-
-
-  function showConfirmationDialog() {
-    const observacion = prompt("¿Está seguro que desea anular esta compra?\nIngrese una observación:");
+  const validatenumFactura = () => {
+    let totalCompra = document.getElementById('numFactura').value.trim();
+    let texto;
+    let expresion = /[0-9]/;
   
-    if (observacion !== null) {
-        // Actualizar el campo de observación con el valor ingresado
-        document.getElementById('observacion').value = observacion;
-  
-        // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la compra
-    }
+  if (totalCompra === null || totalCompra === '' || totalCompra.length === 0) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese el valor de la compra</span>';
+    document.getElementById('texto6').innerHTML = texto;
+    return false;
+  } else if (!expresion.test(totalCompra)) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>';
+    document.getElementById('texto6').innerHTML = texto;
+    return false;   
+  }else{
+    document.getElementById('texto6').innerHTML = '';
+    return true;
   }
+   
+   
+  };
 
-  function showMessage() {
+
+  function showRegistrar() {
     Swal.fire({
+      title: 'La compra se ha registrado con éxito',
       icon: 'success',
-      title: 'Éxito',
-      text: 'La compra se ha registrado con éxito',
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+      focusConfirm: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirigir a la vista de categorías
+        window.location.href = '/compras';
+      }
     });
   }
-
+  
+  
+  
+    function showAnular() {
+      Swal.fire({
+        title: '¿Estás seguro que desea anular esta compra?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'Cancelar',
+        input: 'text',  // Agrega esta línea para mostrar el cuadro de texto
+        inputPlaceholder: 'Ingrese una observación',  // Agrega esta línea para establecer un texto de marcador de posición para el cuadro de texto
+        inputAttributes: {
+          autocapitalize: 'off'  // Agrega esta línea para desactivar la autocapitalización en el cuadro de texto
+        },
+        showLoaderOnConfirm: true,
+        preConfirm: (observacion) => {
+          if (observacion) {
+            // Actualizar el campo de observación con el valor ingresado
+            document.getElementById('observacion').value = observacion;
+            // Aquí puedes agregar el código para realizar la acción de cambiar el estado de la categoría
+          }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Enfocar automáticamente el campo de observación después de confirmar
+          document.getElementById('observacion').focus();
+        }
+      });
+    }
