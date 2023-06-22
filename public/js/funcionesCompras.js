@@ -151,7 +151,7 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
     return false;
   } else if (!expresion.test(precioVenta)) {
     texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>'+'<br>';
-    document.getElementById('texto37').innerHTML = texto;
+    document.getElementById('texto7').innerHTML = texto;
     return false;   
   }else{
     document.getElementById('texto7').innerHTML = '';

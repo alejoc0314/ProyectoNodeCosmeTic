@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     {{> header}}
     <title>{{titulo}}</title>
@@ -32,130 +34,8 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                        <label for="fechaCompra">Fecha Compra</label>
-                                        <input type="nombre" class="form-control" id="fechaCompra"
-                                            placeholder="Fecha Compra" style="width: 100%;" />
-                                        </div>
-                                   <div class="texto" id="textoc"></div>
-                                </div>
-
-
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="fechaRegistro">Fecha Registro</label>
-                                        <input type="nombre" class="form-control" id="fechaRegistro"
-                                            placeholder="Fecha Registro" style="width: 100%;" />
-                                    </div>
-                                    <div class="texto" id="texto"></div>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-
-                            <!-- /.col -->
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="proveedor">Proveedor</label>
-                                        <input type="proveedor" class="form-control" id="proveedor"
-                                            placeholder="Digite el Proveedor" style="width: 100%;" />
-                                    </div>
-                                    <div class="texto2" id="texto2"></div>
-                                </div>
-                                <!-- /.form-group -->
-                                <div class="col-md-6">
-
-                                    <div class="form-group">
-                                        <label for="producto">Producto</label>
-                                        <input type="producto" class="form-control" id="producto"
-                                            placeholder="Digite el producto " style="width: 100%;" />
-                                    </div>
-                                    <div class="texto3" id="texto3"></div>
-                                </div>
-                                <!-- /.form-group -->
-                       
-                            </div>
-
-                            <div class="row">
-
-                                <!-- /.col -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="categoria">Categoria</label>
-                                         <select class="form-control select2bs4" style="width: 100%;">
-                                            <option selected="selected">Elija una categoria</option>
-                                            <option>Belleza</option>
-                                            <option>limpieza</option>
-                                        </select>
-                                    </div>
-                                    <div class="texto4" id="texto4"></div>
-                                    </br>
-                                    <!-- /.form-group -->
-                                </div>
-                                <div class="col-md-6">
-
-                                    <div class="form-group">
-                                        <label for="precioCompra">Precio Compra</label>
-                                        <input type="precioCompra" class="form-control" id="precioCompra"
-                                            placeholder="Digite su precio Compra" style="width: 100%;" />
-                                    </div>
-                                    <!-- /.form-group -->
-                                        <div class="texto5" id="texto5"></div>
-                                </div>
-                                
-                              </div>
-
-                            <!-- /.col -->
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="precioVenta">Precio Venta</label>
-                                        <input type="precioVenta" class="form-control" id="precioVenta"
-                                            placeholder="Digite su precio Venta" style="width: 100%;" />
-                                    </div>
-                                    <div class="texto7" id="texto7"></div>
-                                </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="totalCompra">Total Compra</label>
-                                        <input type="totalCompra" class="form-control" id="totalCompra"
-                                            placeholder="Digite su precio Compra" style="width: 100%;" />
-                                    </div>
-                                <div class="texto6" id="texto6"></div>
-                            </div>
-                            <div class="row">
-                               <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="observaciones">Observaciones</label>
-                                        <input type="observaciones" class="form-control" id="observaciones"
-                                            placeholder="Observaciones" style="width: 100%;" />
-                                    </div>
-                                <div class="texto6" id="texto6"></div>
-                            </div>
-                            <div class="float-right d-flex align-items-center justify-content-end">
-    <div class="form-group m-0">
-        <a class="btn btn-dark d-flex align-items-center justify-content-center" id="addImageBtn">
-            <i class="bi bi-image m-0"></i>
-        </a>
-    </div>
-</div>
-
-<!-- Cuadro de diálogo para cargar imagen -->
-<div id="imageDialog" style="display: none;">
-    <form id="imageForm" enctype="multipart/form-data">
-        <input type="file" id="imageInput" name="image" accept="image/*" />
-        <input type="submit" value="Cargar" />
-    </form>
-</div>
-
-<!-- Script para abrir el cuadro de diálogo y cargar la imagen -->
-<script>
+                    
+ <script>
     $(document).ready(function() {
         $('#addImageBtn').click(function() {
             $('#imageDialog').dialog({
@@ -187,6 +67,125 @@
         });
     });
 </script>
+                        <div class="card-body">
+                            
+                            
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label for="fechaCompra">Fecha Compra</label>
+                                        <input type="nombre" oninput="validatefechaCompra()"class="form-control" id="fechaCompra"
+                                            placeholder="Fecha Compra" style="width: 100%;" />
+                                        </div>
+                                   <div class="texto" id="textoc"></div>
+                                </div>
+
+
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fechaRegistro">Fecha Registro</label>
+                                        <input type="nombre" oninput="validatefechaRegistro()" class="form-control" id="fechaRegistro"
+                                            placeholder="Fecha Registro" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto" id="texto"></div>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+
+                            <!-- /.col -->
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="proveedor">Proveedor</label>
+                                        <input type="proveedor" oninput="validateproveedor()" class="form-control" id="proveedor"
+                                            placeholder="Digite el Proveedor" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto2" id="texto2"></div>
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="producto">Producto</label>
+                                        <input type="producto" oninput="validateproducto()" class="form-control" id="producto"
+                                            placeholder="Digite el producto " style="width: 100%;" />
+                                    </div>
+                                    <div class="texto3" id="texto3"></div>
+                                </div>
+                                <!-- /.form-group -->
+                       
+                            </div>
+
+                            <div class="row">
+
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="categoria">Categoria</label>
+                                         <select class="form-control select2bs4" oninput="validateprecioCompra()" style="width: 100%;">
+                                            <option selected="selected">Elija una categoria</option>
+                                            <option>Belleza</option>
+                                            <option>limpieza</option>
+                                        </select>
+                                    </div>
+                                    <div class="texto4" id="texto4"></div>
+                                    </br>
+                                    <!-- /.form-group -->
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="precioCompra">Precio Compra</label>
+                                        <input type="precioCompra" oninput="validateprecioCompra()" class="form-control" id="precioCompra"
+                                            placeholder="Digite su precio Compra" style="width: 100%;" />
+                                    </div>
+                                    <!-- /.form-group -->
+                                        <div class="texto5" id="texto5"></div>
+                                </div>
+                                
+                              </div>
+
+                            <!-- /.col -->
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="precioVenta">Precio Venta</label>
+                                        <input type="precioVenta" oninput="validateprecioVenta()" class="form-control" id="precioVenta"
+                                            placeholder="Digite su precio Venta" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto7" id="texto7"></div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="totalCompra">Total Compra</label>
+                                        <input type="totalCompra" oninput="validatetotalCompra()" class="form-control" id="totalCompra"
+                                            placeholder="Digite su precio Compra" style="width: 100%;" />
+                                    </div>
+                                <div class="texto6" id="texto6"></div>
+                            </div>
+                            <div class="row">
+                               <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="observaciones">Observaciones</label>
+                                        <input type="observaciones" class="form-control" id="observaciones"
+                                            placeholder="Observaciones" style="width: 100%;" />
+                                    </div>
+                                <div class="texto6" id="texto6"></div>
+                            
+                        </div>
+
+<!-- Cuadro de diálogo para cargar imagen -->
+<div id="imageDialog" style="display: none;">
+    <form id="imageForm" enctype="multipart/form-data">
+        <input type="file" id="imageInput" name="image" accept="image/*" />
+        <input type="submit" value="Cargar" />
+    </form>
+</div>
+
+<!-- Script para abrir el cuadro de diálogo y cargar la imagen -->
 
 
 <div class="row"></div>
@@ -287,6 +286,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
     <!-- Page specific script -->
+
 
     
 </body>
