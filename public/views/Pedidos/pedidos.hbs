@@ -17,11 +17,18 @@
     <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/adminlte.min.css">
+    <style>
+        .btn.buttons-excel {
+            background-color: #28a745;
+            color: #fff;
+            border-style: none;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        
+
         {{> navbar}}
 
         <!-- Content Wrapper. Contains page content -->
@@ -60,11 +67,9 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>N° Pedido</th>
                                                 <th>Cliente</th>
                                                 <th>Vendedor</th>
                                                 <th>Fecha pedido</th>
-                                                <th>Fecha entrega</th>
                                                 <th>Tipo pago</th>
                                                 <th>Total pedido</th>
                                                 <th>Estado</th>
@@ -74,35 +79,27 @@
                                         <tbody>
                                             {{#each lista_pedidos}}
                                             <tr>
-                                                <td>{{ num_pedido }}</td>
                                                 <td>{{ cliente }}</td>
                                                 <td>{{ empleado }}</td>
-                                                <td>{{ fecha_pedido }}</td>
-                                                <td>{{ fecha_entrega }}</td>
-                                                <td>{{ tipo_pago }}</td>
-                                                <td>{{ total_pedido }}</td>
-                                                <td>{{ estado_pedido }}</td>
+                                                <td>{{ toLocaleDate fechaPedido}}</td>
+                                                <td>{{ tipoPago }}</td>
+                                                <td>{{ totalPedido }}</td>
+                                                <td>{{ estadoPedido }}</td>
                                                 <td>
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-trash-can"></i></button>
-                                                    <button><i class="fa-solid fa-toggle-on"></i></button>
+                                                    <a class='btn btn-primary' href="/detallePedido?_id={{_id}}"
+                                                        title="Ver detalle de pedido"><i
+                                                            class="fa-solid fa-eye"></i></a>
+                                                    <button class='btn btn-warning'
+                                                        onclick="cambiarEstadoPedido('{{_id}}')"
+                                                        title="Enviar pedido"><i
+                                                            class="nav-icon fa-solid fa-truck-fast"></i></button>
+                                                    <button class='btn btn-danger' onclick="eliminarPedido('{{_id}}')"
+                                                        title="Anular pedido"><i
+                                                            class="fa-solid fa-trash-can"></i></button>
                                                 </td>
                                             </tr>
                                             {{/each}}
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>N° Pedido</th>
-                                                <th>Cliente</th>
-                                                <th>Vendedor</th>
-                                                <th>Fecha pedido</th>
-                                                <th>Fecha entrega</th>
-                                                <th>Tipo pago</th>
-                                                <th>Total pedido</th>
-                                                <th>Estado</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
@@ -151,16 +148,23 @@
     <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
     <!-- Page specific script -->
+    <script src="/js/funcionesPedidos.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": [{
+                    extend: "excel",
+                    text: '<i class="fas fa-file-excel"></i> Descargar Excel',
+                    className: "btn-excel"
+                }]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
