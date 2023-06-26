@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{> header}}
     <title>{{ titulo }}</title>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" onload="listarDatos()">
     <div class="wrapper">
+
         {{> navbar}}
 
         <!-- Content Wrapper. Contains page content -->
@@ -39,8 +47,8 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Pagos registrados en el sistema</h3>
-                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -6%"> <a
-                                            class="btn btn-success boton-registro" href="/registroPagos">
+                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -3%">
+                                        <a class="btn btn-success boton-registro" href="/registroPagos">
                                             Agregar Pago</a>
                                     </div>
                                 </div>
@@ -48,54 +56,48 @@
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="">
+                                            <div class="form-group" style="padding-left: 6px;">
+                                                <label for="searchInput">Buscar:</label>
+                                                <input type="text" id="searchInput" class="form-control"
+                                                    placeholder="Ingrese término de búsqueda" style="width: 110%;">
+
+                                            </div>
+                                        </div>
+                                        <div style="padding-left:40px; padding-top:30px">
+                                            <button class="btn btn-success" id="btnGenerarEXCEL">
+                                                <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar
+                                                Excel
+                                            </button>
+                                        </div>
+
+                                    </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>N°</th>
-                                                <th>Nombre</th>
-                                                <th>Fecha</th>
-                                                <th>Factura</th>
+                                                <th>ID</th>
+                                                <th>Nombre cliente</th>
+                                                <th>Fecha de pago</th>
+                                                <th># Factura</th>
                                                 <th>Cantidad pago</th>
                                                 <th>Cantidad restante</th>
                                                 <th>Total venta</th>
                                                 <th>Acciones</th>
+
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            {{#each lista_pagos}}
-                                            <tr>
-                                                <td>{{ id_Pago }}</td>
-                                                <td>{{ nombre_Cliente }}</td>
-                                                <td>{{ fecha }}</td>
-                                                <td>{{ num_Factura }}</td>
-                                                <td>{{ cantidad_pago }}</td>
-                                                <td>{{ cantidad_restante }}</td>
-                                                <td>{{ total_venta }}</td>
+                                        <tbody id="contenido">
 
-                                                <td>
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-eye"></i></button>
-                                                    <button><i class="fa-solid fa-toggle-on"></i></button>
-                                                </td>
-                                            </tr>
-                                            {{/each}}
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <th>N°</th>
-                                                <th>Nombre</th>
-                                                <th>Fecha</th>
-                                                <th>Factura</th>
-                                                <th>Cantidad pago</th>
-                                                <th>Cantidad restante</th>
-                                                <th>Total venta</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                            </tr>
+
                                         </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
+                                <!-- Modal Trigger -->
+
                             </div>
                             <!-- /.card -->
                         </div>
@@ -105,7 +107,79 @@
                 </div>
                 <!-- /.container-fluid -->
             </section>
+
             <!-- /.content -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalPagos" tabindex="-1" role="dialog" aria-labelledby="modalPagosLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPagosLabel">Pagos de: <span id="nombreCliente"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha de pago</th>
+                                    <th># Factura</th>
+                                    <th>Cantidad pago</th>
+                                    <th>Cantidad restante</th>
+                                    <th>Total venta</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modalContenido">
+                                <!-- Aquí se agregarán los datos de los pagos del cliente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalPagosFactura" tabindex="-1" role="dialog"
+            aria-labelledby="modalPagosFacturaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPagosFacturaLabel">Pagos de: <span
+                                id="nombreClienteFactura"></span>,
+                            Factura: <span id="numeroFactura"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha de pago</th>
+                                    <th># Factura</th>
+                                    <th>Cantidad pago</th>
+                                    <th>Cantidad restante</th>
+                                    <th>Total venta</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modalContenidoFactura">
+                                <!-- Aquí se agregarán los datos de los pagos del cliente y la factura -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- /.content-wrapper -->
@@ -117,47 +191,65 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
+
+
+
+
+
+
 
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables  & Plugins -->
-    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="/plugins/jszip/jszip.min.js"></script>
-    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
     <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
     <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
 
     <!-- Page specific script -->
+
+
+    <script src="/js/funcionesPagos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
+
+
+    <script src="/js/xlxx.js"></script>
+    <script src="/js/excelPagos.js"></script>
     <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+        $(document).ready(function () {
+            // Obtener la referencia al campo de búsqueda
+            var searchInput = $("#searchInput");
+
+            // Obtener la referencia a la tabla y su contenido
+            var tableBody = $("#contenido");
+
+            // Función de búsqueda
+            function buscar() {
+                var searchTerm = searchInput.val().toLowerCase();
+
+                // Iterar sobre cada fila de la tabla
+                tableBody.find("tr").each(function () {
+                    var rowData = $(this).text().toLowerCase();
+
+                    // Mostrar u ocultar filas según el término de búsqueda
+                    if (rowData.indexOf(searchTerm) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            }
+
+            // Escuchar el evento de cambio en el campo de búsqueda
+            searchInput.on("keyup", function () {
+                buscar();
             });
         });
     </script>
+
+
 </body>
 
 </html>

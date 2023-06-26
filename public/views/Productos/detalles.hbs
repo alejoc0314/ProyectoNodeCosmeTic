@@ -1,0 +1,65 @@
+const productoPut = async (req, res = response) => {
+  let id = null;
+  if (req.query != null && req.query.id != null) {
+    id = req.query.id;
+  }
+  const { categoria, nombre, stockMaximo, stockMinimo, precioCosto, precioVenta, observacion, estado } = req.body;
+  let mensaje = "";
+
+  try {
+    if (id != null) {
+      // Calcular la ganancia
+      const ganancia = parseFloat(precioVenta) - parseFloat(precioCosto);
+
+      // Actualizar el producto y guardar la ganancia en la base de datos
+      const producto = await Producto.findByIdAndUpdate(
+        id,
+        {
+          categoria: categoria,
+          nombre: nombre,
+          stockMaximo: stockMaximo,
+          stockMinimo: stockMinimo,
+          precioCosto: precioCosto,
+          precioVenta: precioVenta,
+          observacion: observacion,
+          estado: estado,
+          ganancia: ganancia  // Guardar la ganancia en el documento
+        },
+        { new: true, runValidators: true }
+      );
+
+      if (producto) {
+        // Obtener la ganancia calculada del producto actualizado
+        const gananciaCalculada = producto.ganancia;
+
+        mensaje = "La modificación se efectuó correctamente";
+
+        // Enviar la ganancia calculada en la respuesta JSON
+        res.json({
+          msg: mensaje,
+          ganancia: gananciaCalculada
+        });
+      } else {
+        mensaje = "El producto no fue encontrado";
+
+        res.json({
+          msg: mensaje
+        });
+      }
+    } else {
+      mensaje = "Ingrese un id";
+
+      res.json({
+        msg: mensaje
+      });
+    }
+
+  } catch (error) {
+    console.error(error);
+    mensaje = error.message;
+
+    res.json({
+      msg: mensaje
+    });
+  }
+};

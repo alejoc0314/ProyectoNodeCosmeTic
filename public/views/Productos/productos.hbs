@@ -9,9 +9,15 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <script>
+    // Código JavaScript para ejecutar después de cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      listarDatos();
+    });
+  </script>
     <div class="wrapper">
 
-        {{> navbar}}
+       {{> navbar}}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -40,60 +46,52 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Productos registrados en el sistema</h3>
-                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -3.5%">
-                                    <a class="btn btn-success boton-registro" href="/registroProductos">
-                                        Agregar Producto</a>
-                                    </div>
+                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -3%"> <a
+                                            class="btn btn-success boton-registro" href="/registroProductos">
+                                            Agregar Producto</a>
+                                    </div>         
                                 </div>
-                                <div class="row"></div>
+                                <div class="">
+                                    <div class="form-group" style="padding-left: 6px;">
+                                        <label for="searchInput">Buscar:</label>
+                                        <input type="text" id="searchInput" class="form-control"
+                                            placeholder="Ingrese término de búsqueda" style="width: 20%;">
+
+                                    </div>
+                                </div>  
+                                          
+                                <br>
+                                  <div class="col-lg-12" style=" width: 16%; margin-left: 1%">
+                                <button class="btn btn-success" id="btnGenerarExcel" >
+                                    <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar Excel
+                                </button>
+                               </div>  
                                 <!-- /.card-header -->
-                                <div class="card-body">
+                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>N°</th>
                                                 <th>Categoria</th>
                                                 <th>Nombre</th>
-                                                <th>Cantidad</th>
+                                                <th>Stock</th>
+                                                <th>Stock Maximo</th>
+                                                <th>Stock Minimo</th>
                                                 <th>Precio Costo</th>
                                                 <th>Precio Venta</th>
+                                                <th>Ganancia</th>
+                                                <th>Observacion</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
+                                                
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            {{#each lista_productos}}
-                                            <tr>
-                                                <td>{{ id_Producto }}</td>
-                                                <td>{{ id_Categoria}}</td>
-                                                <td>{{ nombre_Producto }}</td>
-                                                <td>{{ cantidad }}</td>
-                                                <td>{{ precio_Costo }}</td>
-                                                <td>{{ precio_Venta }}</td>
-                                                <td>{{ estado_Producto }}</td>
-                                                <td>
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-eye"></i></button>
-                                                    <button><i class="fa-solid fa-toggle-on"></i></button>
-                                                </td>
-                                            </tr>
-                                            {{/each}}
+                                        <tbody id="contenido">
+                                                                                      
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>N°</th>
-                                                <th>Categoria</th>
-                                                <th>Nombre</th>
-                                                <th>Cantidad</th>
-                                                <th>Precio Costo</th>
-                                                <th>Precio Venta</th>
-                                                <th>Estado</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
+                                
                             </div>
                             <!-- /.card -->
                         </div>
@@ -105,8 +103,10 @@
             </section>
             <!-- /.content -->
         </div>
+        
         <!-- /.content-wrapper -->
         {{> footer}}
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
@@ -114,7 +114,7 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+    <script src="../../js/funcionesProductos.js"></script>
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -135,26 +135,49 @@
     <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
     <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="/js/demo.js"></script>
+    <script src="../../xlsx/xlsx.js"></script>
+    <script src="../../js/excelProductos.js"></script>
+    
+  
+<!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    
     <!-- Page specific script -->
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+<script>
+$(document).ready(function() {
+    // Obtener la referencia al campo de búsqueda
+    var searchInput = $("#searchInput");
+
+    // Obtener la referencia a la tabla y su contenido
+    var tableBody = $("#contenido");
+
+    // Función de búsqueda
+    function buscar() {
+        var searchTerm = searchInput.val().toLowerCase();
+
+        // Iterar sobre cada fila de la tabla
+        tableBody.find("tr").each(function() {
+            var rowData = $(this).text().toLowerCase();
+
+            // Mostrar u ocultar filas según el término de búsqueda
+            if (rowData.indexOf(searchTerm) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
         });
-    </script>
+    }
+
+    // Escuchar el evento de cambio en el campo de búsqueda
+    searchInput.on("keyup", function() {
+        buscar();
+    });
+});
+</script>
+  
 </body>
 
 </html>

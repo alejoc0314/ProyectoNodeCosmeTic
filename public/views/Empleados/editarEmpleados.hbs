@@ -37,34 +37,45 @@
                         <div class="card-header">
                             <h3 class="card-title">{{subtitulo}}</h3>
 
-                            
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                    <div class="card-body">
-                         <div class="row">
+                        <input type="hidden" class="form-control" id="id" style="width: 100%;" />
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cedula">Cedula <span class="required-asterisk">*</span></label>
-                                        <input type="cedula" oninput="validateCedula()" class="form-control" id="cedula" placeholder="Digite su Cedula" style="width: 100%;" />
+                                        <label for="cedula">Cedula<span class="required-asterisk">*</span></label>
+                                        <input type="text"  oninput="validateCedula()" class="form-control" id="cedula"
+                                            placeholder="Digite su Cedula" style="width: 100%;" />
                                     </div>
-                                    <div class="texto2" id="texto2"></div>
+                                   <div class="texto2" id="texto2"></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nombre">Nombre<span class="required-asterisk">*</span></label>
-                                        <input type="nombre" oninput="validateNombre()" class="form-control" id="nombre" placeholder="Digite su Nombre" style="width: 100%;" />
+                                        <input type="text" oninput="validateNombre()" class="form-control" id="nombre"
+                                            placeholder="Digite su Nombre" style="width: 100%;" />
                                     </div>
                                     <div class="texto" id="texto"></div>
                                 </div>
                                 <!-- /.form-group -->
                             </div>
+
                             <!-- /.col -->
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="correo">Correo<span class="required-asterisk">*</span></label>
-                                        <input type="correo" oninput="validateCorreo()" class="form-control" id="correo"
+                                        <input type="text" oninput="validateCorreo()" class="form-control" id="correo"
                                             placeholder="Digite su Correo" style="width: 100%;" />
                                     </div>
                                     <div class="texto3" id="texto3"></div>
@@ -74,7 +85,7 @@
 
                                     <div class="form-group">
                                         <label for="direccion">Direccion<span class="required-asterisk">*</span></label>
-                                        <input type="direccion" oninput="validateDireccion()" class="form-control" id="direccion"
+                                        <input type="text" oninput="validateDireccion()" class="form-control" id="direccion"
                                             placeholder="Digite su Direccion" style="width: 100%;" />
                                     </div>
                                     <div class="texto4" id="texto4"></div>
@@ -101,32 +112,35 @@
                                 <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label for="observacion">Observacion</label>
-                                        <input type="observacion" class="form-control" id="observacion"
+                                        <label for="observacion">Observacion<span class="required-asterisk">*</span></label>
+                                        <input type="text" class="form-control" id="observacion"
                                             placeholder="Digite su observacion" style="width: 100%;" />
                                     </div>
                                     <!-- /.form-group -->
 
                                 </div>
                                 </div>
-                                   <div class="row"></div>
+                                <div class="row"></div>
                                 <div class="col-md-6"></div>
                                 <div class="form-group">
                                     <label for="estado">Estado<span class="required-asterisk">*</span></label>
-                                    <select type="estado" oninput="validateEstado()" class="form-control" id="estado"
+                                    <select type="text" oninput="validateEstado()" class="form-control" id="estado"
                                             style="width: 20%;" >
                                     <option value="" disabled selected>Elija el estado</option>
                                     <option value="true">activo</option>
                                     <option value="false">inactivo</option>
                                     </select>
-                                    <div class="texto8" id="texto8"></div>
+                                                                        <div class="texto8" id="texto8"></div>
+
                                </div>
                                
                                  <div class="row"></div>
                                     <div class="col-lg-12">
-                                    <input class="sendbtn btn btn-success" id="sendbtn" type="button" value="Registrar" onclick="validateForm(true)">   
-                                    <button class="sendbtn btn btn-secondary" onclick="goBack()">Regresar</button>                   
-                                    </div>
+                                    <input class="sendbtn btn btn-success" id="btnActualizar" type="button" value="Editar" onclick="validateForm(false)">
+                                    <button class="sendbtn btn btn-secondary" onclick="goBack()">Regresar</button>   
+                                    </div>     
+                                   <script src="../../js/funcionesEmpleados.js"></script>
+                                   <script src="../../js/validacionEmpleado.js"></script>
                                     
 
                                     
@@ -157,13 +171,12 @@
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-    <script>
+  <script>
 function goBack() {
   history.back();
 }
 </script>
-  <script src="../../js/funcionesEmpleados.js"></script>
-    <script src="../../js/validacionEmpleado.js"></script>
+   
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></scri>
     <!-- Bootstrap 4 -->
@@ -186,8 +199,8 @@ function goBack() {
     <script src="/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
-    
-        <!-- Page specific script -->
+    <!-- Page specific script -->
+
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 
     <!-- SweetAlert2 JS -->

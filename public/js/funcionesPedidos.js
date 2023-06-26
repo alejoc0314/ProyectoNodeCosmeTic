@@ -116,6 +116,7 @@ const agregarProducto = async () => {
         },
         body: JSON.stringify(data)
       });
+      window.location.reload();
       console.log('Datos enviados al servidor exitosamente');
     } catch (error) {
       console.error('Error al enviar los datos al servidor:', error);

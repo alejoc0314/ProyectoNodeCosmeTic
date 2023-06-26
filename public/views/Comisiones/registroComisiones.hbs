@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +10,7 @@
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-       {{> navbar}}
+        {{> navbar}}
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -35,7 +36,8 @@
                     <!-- SELECT2 EXAMPLE -->
                     <div class="card card-default">
                         <div class="card-header">
-                            <h3 class="card-title">{{subtitulo}}</h3>
+                            <h3 class="card-title">{{subtitulo}}  <p> Los campos señalados con <span
+                                        style="color: red; vertical-align: super;">*</span> son obligatorios</p></h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -51,17 +53,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="nombre" class="form-control" id="nombre"
-                                            placeholder="Nombre empleado" style="width: 100%;" />
-                                    </div>                          
-                                   <div class="texto" id="texto"></div>
+                                        <label for="empleado">Nombre empleado<span
+                                        style="color: red; vertical-align: super;">*</span></label>
+                                        <select class="form-control " id="empleados" style="width: 100%;">
+                                            <option value="" disabled selected>Elija un empleado</option>
+
+                                        </select>
                                     </div>
-                                    
+                                    <div class="texto" id="texto"></div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="total_ventas">Total ventas</label>
-                                        <input type="total_ventas" class="form-control" id="total_ventas"
+                                        <label for="total_ventas">Total ventas<span
+                                        style="color: red; vertical-align: super;">*</span></label>
+                                        <input type="total_venta" class="form-control" id="total_ventas"
                                             placeholder="Total ventas" style="width: 100%;" />
                                     </div>
                                     <div class="texto2" id="texto2"></div>
@@ -74,9 +80,17 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="porcentaje">Porcentaje</label>
-                                        <input type="porcentaje" class="form-control" id="porcentaje"
-                                            placeholder="Porcentaje" style="width: 100%;" />
+                                        <label for="porcentaje">Porcentaje<span
+                                        style="color: red; vertical-align: super;">*</span></label>
+                                        <select class="form-control " id="porcentaje" style="width: 100%;">
+                                            <option value="" disabled selected>Elija un porcentaje</option>
+                                            <option value="1">1</option> 
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+
+                                        </select>
                                     </div>
                                     <div class="texto3" id="texto3"></div>
                                 </div>
@@ -84,14 +98,17 @@
                                 <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label for="fecha_comi">Fecha</label>
+                                        <label for="fecha_comi">Fecha (AAAA-MM-DD)
+                                            {{!-- <span
+                                        style="color: red; vertical-align: super;">*</span> --}}
+                                        </label>
                                         <input type="fecha_comi" class="form-control" id="fecha_comi"
-                                            placeholder="Fecha" style="width: 100%;" />
+                                            placeholder="Fecha" style="width: 100%;" readonly />
                                     </div>
                                     <div class="texto4" id="texto4"></div>
                                 </div>
                                 <!-- /.form-group -->
-                 
+
                             </div>
 
                             <div class="row">
@@ -102,41 +119,58 @@
                                         <label for="observacion">observaciones del empleado</label>
                                         <input type="observacion" class="form-control" id="observacion"
                                             placeholder="Observacion" style="width: 100%;" />
-                                        
+
                                     </div>
                                     <div class="texto5" id="texto5"></div>
                                     </br>
                                     <!-- /.form-group -->
-                                </div>            
+                                </div>
+                                <!-- /.form-group -->
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="total_comision">Total comisión
+                                            {{!-- <span
+                                        style="color: red; vertical-align: super;">*</span> --}}
+                                        </label>
+                                        <input type="total_comision" class="form-control" id="total_comision"
+                                            placeholder="Total comisión" style="width: 100%;" readonly />
+
+                                    </div>
+                                    <div class="texto6" id="texto6"></div>
+                                    </br>
                                     <!-- /.form-group -->
                                 </div>
-                               
-                                 <div class="row"></div>
-                                    <div class="col-lg-12">
-                                            
-                                               <input class="sendbtn btn btn-success" id="sendbtn" type="button" value="Registrar" onclick= "validateForm()">
-                                              
-                                    <script type="text/javascript" src="js/funcionesComisiones.js"></script>
-                                    
-                                    
-                                    </div>
-                                    
-                                <!-- /.card-body -->
                             </div>
 
-                        </div>
+                            <div class="row"></div>
+                            <div class="col-lg-12">
 
+                                <input class="sendbtn btn btn-success" id="btnRegistrar" type="button" value="Registrar"
+                                    onclick="registrar()">
+                                <a href="/comisiones"><button class="sendbtn btn btn-secondary"
+                                        type="button">Regresar</button></a>
+
+                                <script type="text/javascript" src="js/funcionesComisiones.js"></script>
+
+
+                            </div>
+
+                            <!-- /.card-body -->
+                        </div>
 
                     </div>
 
-                    <!-- /.card -->
+
                 </div>
-                <!-- /.col -->
+
+                <!-- /.card -->
         </div>
-        <!-- /.row -->
-        <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     {{> footer}}
@@ -150,7 +184,7 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></scri>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables  & Plugins -->
@@ -186,8 +220,16 @@
             });
         });
 
-      
+
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            obtenerEmpleados();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+
 </body>
 
 </html>

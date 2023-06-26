@@ -129,44 +129,41 @@ app.get('/registroProductos', (req, res) => {
     });
 })
 
+// Página de Editar de producto
+app.get('/editarProductos', (req, res) => {
+    
+    res.render('Productos/editarProductos', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Julian Carreño', 
+        consecutivo: 'editarProductos',
+        subtitulo:'Editar Productos'
+    });
+})
+
+
 // Página de Empleados
 
 app.get('/empleados', (req, res) => {
 
     const empleados = [
-        {
-            id_Empleado: 1,
-            cedula: 11519353,
-            nombre_Empleado: 'julian',
-            correo: 'julian@gmail.com',
-            direccion: 'avenida 32#49a-135',
-            telefono: '315809981',
-            estado_Empleado: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }, {
-            id_Empleado: 2,
-            cedula: 11519353,
-            nombre_Empleado: 'julian',
-            correo: 'julian@gmail.com',
-            direccion: 'avenida 32#49a-135',
-            telefono: '3158099813',
-            estado_Empleado: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }, {
-            id_Empleado: 3,
-            cedula: 11519353,
-            nombre_Empleado: 'julian',
-            correo: 'julian@gmail.com',
-            direccion: 'avenida 32#49a-135',
-            telefono: '3158099813',
-            estado_Empleado: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }];
-    res.render('Empleados/empleados', {
-        titulo: 'CosmeTIC',
-        user_name: 'Julian Carreño',
+    ];
+    res.render('Empleados/empleados', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Julian Carreño', 
         consecutivo: 'Empleados',
         lista_empleados: empleados
+    });
+})
+
+// Página de Editar de empleado
+
+app.get('/editarEmpleados', (req, res) => {
+    
+    res.render('Empleados/editarEmpleados', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Julian Carreño', 
+        consecutivo: 'editarEmpleados',
+        subtitulo:'Editar Empleados'
     });
 })
 
@@ -175,48 +172,26 @@ app.get('/empleados', (req, res) => {
 app.get('/productos', (req, res) => {
 
     const productos = [
-        {
-            id_Producto: 1,
-            id_Categoria: 1,
-            nombre_Producto: 'labial',
-            cantidad: 6,
-            stock_Maximo: 30,
-            stock_Minimo: 10,
-            precio_Costo: 10000,
-            precio_Venta: 15000,
-            ganancia: 5000,
-            estado_Producto: 'Activo'
-        }, {
-            id_Producto: 1,
-            id_Categoria: 1,
-            nombre_Producto: 'base',
-            cantidad: 6,
-            stock_Maximo: 30,
-            stock_Minimo: 10,
-            precio_Costo: 10000,
-            precio_Venta: 15000,
-            ganancia: 5000,
-            estado_Producto: 'Activo'
-        }, {
-            id_Producto: 1,
-            id_Categoria: 1,
-            nombre_Producto: 'pestañina',
-            cantidad: 6,
-            stock_Maximo: 30,
-            stock_Minimo: 10,
-            precio_Costo: 10000,
-            precio_Venta: 15000,
-            ganancia: 5000,
-            estado_Producto: 'Activo'
-        }];
-    res.render('Productos/productos', {
-        titulo: 'CosmeTIC',
-        user_name: 'Julian Carreño',
+    ];
+    res.render('Productos/productos', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Julian Carreño', 
         consecutivo: 'Productos',
         lista_productos: productos
     });
 
+    
+})
+app.get('/detalles', (req, res) => {
 
+    const detalles = [
+    ];
+    res.render('Productos/detalles', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Julian Carreño', 
+        consecutivo: 'Detalles',
+        lista_detalles: detalles
+    });
 })
 
 //pagina registro Categoria
@@ -321,106 +296,63 @@ app.get('/registrarCompra', (req, res) => {
 app.get('/proveedores', (req, res) => {
 
     const proveedores = [
-        {
-            id_Proveedor: 1,
-            cedula: 634596335,
-            nombre_Proveedor: 'Avon',
-            correo: 'colanta@gmail.com',
-            direccion: 'crra 54 #318',
-            telefono: '7479316',
-            estado_Proveedor: 'Activo',
-            observacion: 'descripción'
-        }, {
-            id_Proveedor: 2,
-            cedula: 634354516,
-            nombre_Proveedor: 'Coco Chanel',
-            correo: 'cocochangmail.com',
-            direccion: 'Avenida 87 con 80',
-            telefono: '85989542',
-            estado_Proveedor: 'Activo',
-            observacion: 'descripción'
-        }, {
-            id_Proveedor: 3,
-            cedula: 155263435,
-            nombre_Proveedor: 'shwarckof',
-            correo: 'shwarckof@gmail.com',
-            direccion: 'Crra 89 #785 b sur',
-            telefono: '5846215',
-            estado_Proveedor: 'Activo',
-            observacion: 'descripción'
-        }];
-    res.render('Proveedores/proveedores', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+    ];
+    res.render('Proveedores/proveedores', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'Proveedores',
         lista_proveedores: proveedores
     });
 })
 
 app.get('/registroProveedores', (req, res) => {
-
-    res.render('Proveedores/registroProveedores', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+    
+    res.render('Proveedores/registroProveedores', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'registroProveedores',
-        subtitulo: 'Registro Proveedores'
+        subtitulo:'Registro Proveedores '
     });
 })
 
+app.get('/editarProveedores', (req, res) => {
+    res.render('Proveedores/editarProveedores', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
+        consecutivo: 'editarProveedores',
+        subtitulo:'Editar Proveedores'
+    });
+})
 //Página de pagos
 
 app.get('/pagos', (req, res) => {
 
     const pagos = [
-        {
-            id_Pago: 1,
-            nombre_Cliente: 'Carlos Castro',
-            fecha: '2023-06-03',
-            num_Factura: '00001',
-            cantidad_pago: '200000',
-            cantidad_restante: '400000',
-            total_venta: '600000',
-        }, {
-            id_Pago: 2,
-            nombre_Cliente: 'Maria José',
-            fecha: '2023-08-12',
-            num_Factura: '00122',
-            cantidad_pago: '500000',
-            cantidad_restante: '1000000',
-            total_venta: '1500000',
-        }, {
-            id_Pago: 3,
-            nombre_Cliente: 'Juan Alberto',
-            fecha: '2023-15-07',
-            num_Factura: '04521',
-            cantidad_pago: '1000000',
-            cantidad_restante: '2000000',
-            total_venta: '3000000',
-        }, {
-            id_Pago: 4,
-            nombre_Cliente: 'Ruben Doblas',
-            fecha: '2023-12-30',
-            num_Factura: '84521',
-            cantidad_pago: '20000000',
-            cantidad_restante: '0',
-            total_venta: '20000000',
-        }
-    ];
-    res.render('Pagos/pagos', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+];
+    res.render('Pagos/pagos', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'Pagos',
         lista_pagos: pagos
     });
 })
 
 app.get('/registroPagos', (req, res) => {
-
-    res.render('Pagos/registroPagos', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+    
+    res.render('Pagos/registroPagos', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'registroPagos',
-        subtitulo: 'Registro Pagos'
+        subtitulo:'Registro Pagos'
+    });
+})
+
+app.get('/editarPagos', (req, res) => {
+    res.render('Pagos/editarPagos', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
+        consecutivo: 'editarPagos',
+        subtitulo:'Editar Pagos'
     });
 })
 
@@ -429,50 +361,33 @@ app.get('/registroPagos', (req, res) => {
 app.get('/comisiones', (req, res) => {
 
     const comisiones = [
-        {
-            id_Comision: 1,
-            nombre: 'Juan Camilo',
-            total_ventas: '3200000',
-            porcentaje: '5',
-            comision: 160000,
-            fecha: '2023-06-31',
-            observacion: 'descripción'
-        }, {
-            id_Comision: 2,
-            nombre: 'Juana Maria',
-            total_ventas: '5000000',
-            porcentaje: '2',
-            comision: 100000,
-            fecha: '2023-06-31',
-            observacion: 'descripción'
-        }, {
-            id_Comision: 3,
-            nombre: 'Jose Jose',
-            total_ventas: '1200000',
-            porcentaje: '4',
-            comision: 48000,
-            fecha: '2023-06-31',
-            observacion: 'descripción'
-        }];
-    res.render('Comisiones/comisiones', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+    ];
+    res.render('Comisiones/comisiones', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'Comisiones',
         lista_comisiones: comisiones
     });
 })
 
 app.get('/registroComisiones', (req, res) => {
-
-    res.render('Comisiones/registroComisiones', {
-        titulo: 'CosmeTIC',
-        user_name: 'Juan Sebastián',
+    
+    res.render('Comisiones/registroComisiones', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
         consecutivo: 'registroComisiones',
-        subtitulo: 'Registro Comisiones'
+        subtitulo:'Registro Comisiones'
     });
 })
 
-
+app.get('/editarComisiones', (req, res) => {
+    res.render('Comisiones/editarComisiones', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Juan Sebastián', 
+        consecutivo: 'editarComisiones',
+        subtitulo:'Editar Comisiones'
+    });
+})
 
 // Página de Usuarios
 

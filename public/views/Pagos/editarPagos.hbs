@@ -7,14 +7,11 @@
     {{> header}}
     <title>{{titulo}}</title>
 
-
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
         {{> navbar}}
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -40,9 +37,7 @@
                     <!-- SELECT2 EXAMPLE -->
                     <div class="card card-default">
                         <div class="card-header">
-                            <h3 class="card-title">{{subtitulo}} <p> Los campos señalados con <span
-                                        style="color: red; vertical-align: super;">*</span> son obligatorios</p>
-                            </h3>
+                            <h3 class="card-title">{{subtitulo}}</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -55,24 +50,30 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <input type="hidden" class="form-control" id="id" style="width: 100%;" />
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cedula">Nit-Cédula <span
-                                                style="color: red; vertical-align: super;">*</span></label>
-                                        <input type="number" class="form-control" id="cedula"
-                                            placeholder="Nit-Cédula proveedor" style="width: 100%;" />
+                                        <label for="cliente">Cliente</label>
+                                        <select class="form-control " id="clientes" style="width: 100%;">
+                                            <option value="" disabled selected>Elija un cliente</option>
+
+                                        </select>
+                                        <input type="cliente" class="form-control" id="cliente" style="width: 100%;" readonly>
                                     </div>
+
                                     <div class="texto2" id="texto2"></div>
+
                                 </div>
-                                <div class="col-md-6">
+                               <div class="col-md-6">
+
                                     <div class="form-group">
-                                        <label for="nombre">Nombre Proveedor<span style="color: red;">*</span> </label>
-                                        <input type="text" class="form-control" id="nombre"
-                                            placeholder="Nombre proveedor" style="width: 100%;" />
+                                        <label for="factura">Factura</label>
+                                        <input type="factura" class="form-control" id="factura"
+                                            placeholder="Factura" style="width: 100%;" readonly />
                                     </div>
-                                    <div class="texto1" id="texto1"></div>
-                                </div>
+                                    <div class="texto3" id="texto3"></div>
+                                </div>  
                                 <!-- /.form-group -->
                             </div>
 
@@ -80,24 +81,25 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="correo">Correo<span
-                                                style="color: red; vertical-align: super;">*</span></label>
-                                        <input type="email" class="form-control" id="correo"
-                                            placeholder="Correo proveedor" style="width: 100%;" />
-                                    </div>
-                                    <div class="texto3" id="texto3"></div>
-                                </div>
-                                <!-- /.form-group -->
-                                <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label for="direccion">Dirección<span
-                                                style="color: red; vertical-align: super;">*</span></label>
-                                        <input type="text" class="form-control" id="direccion"
-                                            placeholder="Dirección proveedor" style="width: 100%;" />
+                                        <label for="cantidad_pago">Cantidad Pago</label>
+                                        <input type="cantidad_pago" class="form-control" id="cantidad_pago"
+                                            placeholder="Cantidad pagada" style="width: 100%;" />
                                     </div>
                                     <div class="texto4" id="texto4"></div>
+                                </div>  
+                                <!-- /.form-group -->
+                               <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cantidad_restante">Cantidad restante</label>
+                                        <input type="cantidad_restante" class="form-control" id="cantidad_restante"
+                                            placeholder="Cantidad restante" style="width: 100%;" readonly />
+
+                                    </div>
+                                    <input type="text" id="_id" readonly style="display: none;">
+                                    <div class="texto5" id="texto5"></div>
+                                    <!-- /.form-group -->
                                 </div>
                                 <!-- /.form-group -->
 
@@ -106,74 +108,49 @@
                             <div class="row">
 
                                 <!-- /.col -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono<span
-                                                style="color: red; vertical-align: super;">*</span></label>
-                                        <input type="text" class="form-control" id="telefono"
-                                            placeholder="Teléfono proveedor" style="width: 100%;" />
-
-                                    </div>
-                                    <div class="texto5" id="texto5"></div>
-                                    </br>
-                                    <!-- /.form-group -->
-                                </div>
-                                <div class="col-md-6">
+                                 <div class="col-md-6">
 
                                     <div class="form-group">
-                                        <label for="observacion">Observacion</label>
-                                        <input type="text" class="form-control" id="observacion"
-                                            placeholder="Observacion proveedor" style="width: 100%;" />
+                                        <label for="venta">Total venta</label>
+                                        <input type="venta" class="form-control" id="total_venta"
+                                            placeholder="Total venta" style="width: 100%;" readonly />
                                     </div>
-                                    <!-- /.form-group -->
-
+                                    <div class="texto6" id="texto6"></div>
                                 </div>
+                                
+
+                               
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nombre_contacto">Nombre Contacto<span
-                                                style="color: red; vertical-align: super;">*</span> </label>
-                                        <input type="text" class="form-control" id="nombre_contacto"
-                                            name="contactoProov" placeholder="Nombre contacto" style="width: 100%;" />
-                                    </div>
-                                    <div class="texto8" id="texto8"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
+                            
 
-                                <input class="sendbtn btn btn-success" id="btnRegistrar" type="button" value="Registrar"
-                                    onclick="registrar()">
-                                <a href="/proveedores"><button class="sendbtn btn btn-secondary"
-                                        type="button">Regresar</button></a>
+                            <div class="row"></div>
+                            <button id="btnActualizar" class="sendbtn btn btn-success" type="button"
+                                name="action">Actualizar
+                            </button>
+                            <a href="/pagos"><button class="sendbtn btn btn-danger" type="button"
+                                    > Cancelar</button></a>
 
-                                <script type="text/javascript" src="js/funcionesProveedores.js"></script>
-
-
-                            </div>
-
-                            <!-- /.card-body -->
-
-
+                            <script src="../../js/funcionesPagos.js"></script>
                         </div>
 
 
+                        <!-- /.card-body -->
                     </div>
 
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
+
+
         </div>
-        <!-- /.row -->
-        <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+
+        <!-- /.card -->
     </div>
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-
-
-
+    <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
     <!-- /.content-wrapper -->
     {{> footer}}
 
@@ -184,6 +161,7 @@
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
 
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
@@ -225,7 +203,6 @@
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
-
 </body>
 
 </html>
