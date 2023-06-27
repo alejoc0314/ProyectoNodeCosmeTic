@@ -230,10 +230,21 @@ const registrarPedido = async (listaDetalle) => {
   };
 };
 
-const cambiarEstadoPedido = async (pedidoId) => {
+const cambiarEstadoPedido = async (pedidoId, estadoPedido) => {
+  console.log('EstadoPedido', estadoPedido);
+  console.log('id', pedidoId);
+  let titulo = "";
+  let texto = "";
+  if (estadoPedido == "Por entregar") {
+    titulo = "Despachar Pedido";
+    texto = "¿Está seguro de que desea despachar el pedido?";
+  } else if (estadoPedido == "Despachado") {
+    titulo = "Pedido Entregado";
+    texto = "El pedido será enviado a la sección de ventas";
+  }
   Swal.fire({
-    title: 'Entregar pedido.',
-    text: 'Esto enviará el pedido a la sección de Ventas. ¿Está seguro?',
+    title: titulo,
+    text: texto,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Sí',

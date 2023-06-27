@@ -89,10 +89,19 @@
                                                     <a class='btn btn-primary' href="/detallePedido?_id={{_id}}"
                                                         title="Ver detalle de pedido"><i
                                                             class="fa-solid fa-eye"></i></a>
-                                                    <button class='btn btn-warning'
-                                                        onclick="cambiarEstadoPedido('{{_id}}')"
-                                                        title="Enviar pedido"><i
-                                                            class="nav-icon fa-solid fa-truck-fast"></i></button>
+                                                    {{#isEqual estadoPedido "Por entregar"}}
+                                                    <button id="cambiarEstado" class='btn btn-info'
+                                                        onclick="cambiarEstadoPedido('{{_id}}' , '{{estadoPedido}}')"
+                                                        title="Enviar pedido">
+                                                        <i class="nav-icon fa-solid fa-truck-fast"></i>
+                                                    </button>
+                                                    {{else}}
+                                                    <button id="cambiarEstado" class='btn btn-warning'
+                                                        onclick="cambiarEstadoPedido('{{_id}}' , '{{estadoPedido}}')"
+                                                        title="Enviar pedido">
+                                                        <i class="nav-icon fa-solid fa-truck-fast"></i>
+                                                    </button>
+                                                    {{/isEqual}}
                                                     <button class='btn btn-danger' onclick="eliminarPedido('{{_id}}')"
                                                         title="Anular pedido"><i
                                                             class="fa-solid fa-trash-can"></i></button>

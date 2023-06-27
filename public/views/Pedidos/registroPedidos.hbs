@@ -63,7 +63,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="cliente">Cliente</label>
+                                                <label for="cliente">Cliente <span style="color:red">*</span></label>
                                                 <select type="text" class="form-control" id="cliente"
                                                     placeholder="Seleccione el cliente" style="width: 100%;">
                                                     <option value="">Seleccione el cliente</option>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="empleado">Vendedor</label>
+                                                <label for="empleado">Vendedor <span style="color:red">*</span></label>
                                                 <select type="text" class="form-control" id="empleado"
                                                     placeholder="Seleccione el empleado" style="width: 100%;">
                                                     <option value="">Seleccione el empleado que realizó la venta
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="tipo_pago">Tipo de pago</label>
+                                                <label for="tipo_pago">Tipo de pago <span style="color:red">*</span></label>
                                                 <select type="text" class="form-control" id="tipo_pago"
                                                     placeholder="Seleccione el tipo de pago" style="width: 100%;">
                                                     <option value="">Seleccione el tipo de pago
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="producto">Producto</label>
+                                                <label for="producto">Producto </label>
                                                 <select class="form-control" id="producto"
                                                     placeholder="Seleccione el tipo de pago" style="width: 100%;">
                                                     {{#each listaProductos.producto}}
@@ -122,7 +122,7 @@
                                             <div class="texto5" id="texto5"></div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="cantidad">Cantidad</label>
+                                            <label for="cantidad">Cantidad <span style="color:red">*</span></label>
                                             <div class="form-group" style="display:flex">
                                                 <input type="number" class="form-control" id="cantidad"
                                                     placeholder="Ingrese la cantidad de productos" />
@@ -156,7 +156,7 @@
                                                         <td class="precioTotal">{{ this.precioTotal }}</td>
                                                         <td>
                                                             <button class='btn btn-primary'
-                                                                onclick="eliminarProducto('{{this._id}}')">
+                                                                onclick="editarProducto('{{this._id}}')">
                                                                 <i class="fa-solid fa-pen-to-square"></i></button>
                                                             <button class='btn btn-danger'
                                                                 onclick="eliminarProducto('{{this._id}}')">

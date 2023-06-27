@@ -14,6 +14,14 @@ hbs.registerHelper('if', function (conditional, options) {
     }
 });
 
+hbs.registerHelper('isEqual', function (a, b, options) {
+    if (a === b) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 hbs.registerHelper('jsonStringify', function (context) {
     return JSON.stringify(context);
 });
@@ -131,12 +139,12 @@ app.get('/registroProductos', (req, res) => {
 
 // Página de Editar de producto
 app.get('/editarProductos', (req, res) => {
-    
-    res.render('Productos/editarProductos', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Julian Carreño', 
+
+    res.render('Productos/editarProductos', {
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño',
         consecutivo: 'editarProductos',
-        subtitulo:'Editar Productos'
+        subtitulo: 'Editar Productos'
     });
 })
 
@@ -147,9 +155,9 @@ app.get('/empleados', (req, res) => {
 
     const empleados = [
     ];
-    res.render('Empleados/empleados', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Julian Carreño', 
+    res.render('Empleados/empleados', {
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño',
         consecutivo: 'Empleados',
         lista_empleados: empleados
     });
@@ -158,12 +166,12 @@ app.get('/empleados', (req, res) => {
 // Página de Editar de empleado
 
 app.get('/editarEmpleados', (req, res) => {
-    
-    res.render('Empleados/editarEmpleados', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Julian Carreño', 
+
+    res.render('Empleados/editarEmpleados', {
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño',
         consecutivo: 'editarEmpleados',
-        subtitulo:'Editar Empleados'
+        subtitulo: 'Editar Empleados'
     });
 })
 
@@ -173,22 +181,22 @@ app.get('/productos', (req, res) => {
 
     const productos = [
     ];
-    res.render('Productos/productos', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Julian Carreño', 
+    res.render('Productos/productos', {
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño',
         consecutivo: 'Productos',
         lista_productos: productos
     });
 
-    
+
 })
 app.get('/detalles', (req, res) => {
 
     const detalles = [
     ];
-    res.render('Productos/detalles', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Julian Carreño', 
+    res.render('Productos/detalles', {
+        titulo: 'CosmeTIC',
+        user_name: 'Julian Carreño',
         consecutivo: 'Detalles',
         lista_detalles: detalles
     });
@@ -297,30 +305,30 @@ app.get('/proveedores', (req, res) => {
 
     const proveedores = [
     ];
-    res.render('Proveedores/proveedores', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    res.render('Proveedores/proveedores', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'Proveedores',
         lista_proveedores: proveedores
     });
 })
 
 app.get('/registroProveedores', (req, res) => {
-    
-    res.render('Proveedores/registroProveedores', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+
+    res.render('Proveedores/registroProveedores', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'registroProveedores',
-        subtitulo:'Registro Proveedores '
+        subtitulo: 'Registro Proveedores '
     });
 })
 
 app.get('/editarProveedores', (req, res) => {
-    res.render('Proveedores/editarProveedores', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    res.render('Proveedores/editarProveedores', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'editarProveedores',
-        subtitulo:'Editar Proveedores'
+        subtitulo: 'Editar Proveedores'
     });
 })
 //Página de pagos
@@ -328,31 +336,31 @@ app.get('/editarProveedores', (req, res) => {
 app.get('/pagos', (req, res) => {
 
     const pagos = [
-];
-    res.render('Pagos/pagos', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    ];
+    res.render('Pagos/pagos', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'Pagos',
         lista_pagos: pagos
     });
 })
 
 app.get('/registroPagos', (req, res) => {
-    
-    res.render('Pagos/registroPagos', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+
+    res.render('Pagos/registroPagos', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'registroPagos',
-        subtitulo:'Registro Pagos'
+        subtitulo: 'Registro Pagos'
     });
 })
 
 app.get('/editarPagos', (req, res) => {
-    res.render('Pagos/editarPagos', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    res.render('Pagos/editarPagos', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'editarPagos',
-        subtitulo:'Editar Pagos'
+        subtitulo: 'Editar Pagos'
     });
 })
 
@@ -362,30 +370,30 @@ app.get('/comisiones', (req, res) => {
 
     const comisiones = [
     ];
-    res.render('Comisiones/comisiones', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    res.render('Comisiones/comisiones', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'Comisiones',
         lista_comisiones: comisiones
     });
 })
 
 app.get('/registroComisiones', (req, res) => {
-    
-    res.render('Comisiones/registroComisiones', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+
+    res.render('Comisiones/registroComisiones', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'registroComisiones',
-        subtitulo:'Registro Comisiones'
+        subtitulo: 'Registro Comisiones'
     });
 })
 
 app.get('/editarComisiones', (req, res) => {
-    res.render('Comisiones/editarComisiones', { 
-        titulo : 'CosmeTIC',
-        user_name : 'Juan Sebastián', 
+    res.render('Comisiones/editarComisiones', {
+        titulo: 'CosmeTIC',
+        user_name: 'Juan Sebastián',
         consecutivo: 'editarComisiones',
-        subtitulo:'Editar Comisiones'
+        subtitulo: 'Editar Comisiones'
     });
 })
 
@@ -721,55 +729,84 @@ app.post('/cambiarEstadoPedido', async (req, res) => {
             mode: 'cors',
             headers: { 'Content-type': 'application/json; charset=UTF-8' }
         });
-
         if (response.status === 200) {
-            const { numeroPedido, cliente, empleado, fechaPedido, tipoPago, productos, totalPedido } = response.data.pedido;
+            const { numeroPedido, cliente, empleado, fechaPedido, tipoPago, productos, totalPedido, estadoPedido } = response.data.pedido;
             const fecha = fechaPedido.slice(0, 10);
             const fechaEntrega = new Date();
-            const venta = {
-                numeroVenta: numeroPedido,
-                cliente: cliente,
-                empleado: empleado,
-                fechaVenta: fecha,
-                fechaEntrega: fechaEntrega,
-                tipoPago: tipoPago,
-                productos: productos,
-                totalVenta: totalPedido,
-                estadoVenta: "Por pagar"
-            }
-            console.log(venta);
-            console.log("hola2")
-            try {
-                const urlVenta = `https://apifinal-5pf3.onrender.com/api/venta`;
-                const ventaResponse = await axios.post(urlVenta, venta, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: { 'Content-type': 'application/json; charset=UTF-8' }
-                });
-                if (ventaResponse.status === 200) {
-                    console.log('Venta registrada exitosamente');
-                    const eliminarPedidoUrl = 'https://apifinal-5pf3.onrender.com/api/pedido';
-                    const eliminarPedidoResponse = await axios.delete(eliminarPedidoUrl, {
-                        data: {
-                            _id: pedidoId
-                        },
-                        headers: {
-                            'Content-type': 'application/json; charset=UTF-8'
-                        }
-                    });
-                    if (eliminarPedidoResponse.status === 200) {
-                        console.log('Pedido eliminado exitosamente');
-                        res.json({ msg: 'Cambio de estado realizado con éxito' });
-                    } else {
-                        console.error('Error al eliminar el pedido:', eliminarPedidoResponse.status);
-                    }
-                } else {
-                    console.error('Error al registrar la venta:', ventaResponse.status);
-                    res.status(ventaResponse.status).send('Error al registrar la venta');
+            console.log(estadoPedido);
+            if (estadoPedido == "Por entregar") {
+                const pedido = {
+                    numeroPedido: numeroPedido,
+                    cliente: cliente,
+                    empleado: empleado,
+                    fechaPedido: fecha,
+                    tipoPago: tipoPago,
+                    productos: productos,
+                    totalPedido: totalPedido,
+                    estadoPedido: "Despachado"
                 }
-            } catch (error) {
-                console.error('Error al realizar la solicitud de venta:', error);
-                res.status(500).send('Error al registrar la venta');
+                try {
+                    const urlPedido = `https://apifinal-5pf3.onrender.com/api/pedido/?_id=${pedidoId}`;
+                    const pedidoResponse = await axios.put(urlPedido, pedido, {
+                        method: 'PUT',
+                        mode: 'cors',
+                        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+                    });
+                    res.json({ msg: 'Cambio de estado realizado con éxito' });
+                } catch (error) {
+                    if (error.response) {
+                        console.error('Error de respuesta del servidor:', error.response.data);
+                    } else if (error.request) {
+                        console.error('No se recibió respuesta del servidor:', error.request);
+                    } else {
+                        console.error('Error al realizar la solicitud:', error.message);
+                    }
+                }
+            } else if (estadoPedido == "Despachado") {
+                const venta = {
+                    numeroVenta: numeroPedido,
+                    cliente: cliente,
+                    empleado: empleado,
+                    fechaVenta: fecha,
+                    fechaEntrega: fechaEntrega,
+                    tipoPago: tipoPago,
+                    productos: productos,
+                    totalVenta: totalPedido,
+                    estadoVenta: "Por pagar"
+                }
+                try {
+                    const urlVenta = `https://apifinal-5pf3.onrender.com/api/venta`;
+                    const ventaResponse = await axios.post(urlVenta, venta, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+                    });
+
+                    if (ventaResponse.status === 200) {
+                        console.log('Venta registrada exitosamente');
+                        const eliminarPedidoUrl = 'https://apifinal-5pf3.onrender.com/api/pedido';
+                        const eliminarPedidoResponse = await axios.delete(eliminarPedidoUrl, {
+                            data: {
+                                _id: pedidoId
+                            },
+                            headers: {
+                                'Content-type': 'application/json; charset=UTF-8'
+                            }
+                        });
+                        if (eliminarPedidoResponse.status === 200) {
+                            console.log('Pedido eliminado exitosamente');
+                            res.json({ msg: 'Cambio de estado realizado con éxito' });
+                        } else {
+                            console.error('Error al eliminar el pedido:', eliminarPedidoResponse.status);
+                        }
+                    } else {
+                        console.error('Error al registrar la venta:', ventaResponse.status);
+                        res.status(ventaResponse.status).send('Error al registrar la venta');
+                    }
+                } catch (error) {
+                    console.error('Error al realizar la solicitud de venta:', error);
+                    res.status(500).send('Error al registrar la venta');
+                }
             }
         } else {
             console.error('Error al obtener los datos del Pedido:', response.status);

@@ -1,6 +1,6 @@
 
 const validateForm = (isNew) => {
-  
+
   const validateNombreResult = validateNombre();
   const validateCedulaResult = validateCedula();
   const validateCorreoResult = validateCorreo();
@@ -8,95 +8,95 @@ const validateForm = (isNew) => {
   const validateTelefonoResult = validateTelefono();
   const validateEstadoResult = validateEstado();
 
-    console.log("validate nombre " , validateNombre);
+  console.log("validate nombre ", validateNombre);
 
-    if (validateNombreResult && validateCedulaResult && validateCorreoResult && validateDireccionResult && validateTelefonoResult && validateEstadoResult) {
-      if (isNew) {
-        registrar();
+  if (validateNombreResult && validateCedulaResult && validateCorreoResult && validateDireccionResult && validateTelefonoResult && validateEstadoResult) {
+    if (isNew) {
+      registrar();
 
-      }else {
-        actualizar();
-      }
-
-    }
-  }
-const validateNombre = () => {
-    let nombre = document.getElementById('nombre').value;
-    let texto;
-    let expresion =  /^[a-zA-Z\s]+$/;
-   
-  
-    if (nombre === null || nombre === '' || nombre.length === 0) {
-     
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese su nombre</span>';
-      document.getElementById('texto').innerHTML = texto;
-      return false;
-    } else if (nombre.length < 3) {
-      
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Tiene que ser mayor o igual a 3 caracteres</span>';
-      document.getElementById('texto').innerHTML = texto;
-      return false;
-    } else if (!expresion.test(nombre)) {
-      
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos(Letras)</span>';
-      document.getElementById('texto').innerHTML = texto;
-      return false;
     } else {
-      
-      document.getElementById('texto').innerHTML = '';
-      return true;
-
-    }
-   
-  }; 
-
-  const validateCorreo = () => {
-    let correo = document.getElementById('correo').value.trim();
-    let texto;
-    let expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if (!correo) {
-      
-        texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Por favor, ingrese su dirección de correo electrónico.</span>';
-        document.getElementById('texto3').innerHTML = texto;
-        return false;
-    } else if (!expresion.test(correo)) {
-        texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese una dirección de correo electrónico válida.</span>';
-        document.getElementById('texto3').innerHTML = texto;
-        return false;
-    }else {
-      document.getElementById('texto3').innerHTML = '';
-      return true;
-
+      actualizar();
     }
 
-  
+  }
+}
+const validateNombre = () => {
+  let nombre = document.getElementById('nombre').value;
+  let texto;
+  let expresion = /^[a-zA-Z\s]+$/;
+
+
+  if (nombre === null || nombre === '' || nombre.length === 0) {
+
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese su nombre</span>';
+    document.getElementById('texto').innerHTML = texto;
+    return false;
+  } else if (nombre.length < 3) {
+
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Tiene que ser mayor o igual a 3 caracteres</span>';
+    document.getElementById('texto').innerHTML = texto;
+    return false;
+  } else if (!expresion.test(nombre)) {
+
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos(Letras)</span>';
+    document.getElementById('texto').innerHTML = texto;
+    return false;
+  } else {
+
+    document.getElementById('texto').innerHTML = '';
+    return true;
+
+  }
+
+};
+
+const validateCorreo = () => {
+  let correo = document.getElementById('correo').value.trim();
+  let texto;
+  let expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!correo) {
+
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Por favor, ingrese su dirección de correo electrónico.</span>';
+    document.getElementById('texto3').innerHTML = texto;
+    return false;
+  } else if (!expresion.test(correo)) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese una dirección de correo electrónico válida.</span>';
+    document.getElementById('texto3').innerHTML = texto;
+    return false;
+  } else {
+    document.getElementById('texto3').innerHTML = '';
+    return true;
+
+  }
+
+
 };
 
 const validateDireccion = () => {
-    let direccion = document.getElementById('direccion').value.trim();
-    let texto;
-    let expresion = /^[a-zA-Z0-9\s'#,-]*$/;
-  
-    if (!direccion) {
-        texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Por favor, ingrese su dirección de residencia.</span>';
-        document.getElementById('texto4').innerHTML = texto;
-        return false;
-    } else if (direccion.length < 5) {
-        texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Su dirección de residencia debe tener al menos 5 caracteres.</span>';
-        document.getElementById('texto4').innerHTML = texto;
-        return false;
-    } else if (!expresion.test(direccion)) {
-        texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese una dirección de residencia válida.</span>';
-        document.getElementById('texto4').innerHTML = texto;
-        return false;
-    }else{
-      document.getElementById('texto4').innerHTML = '';
-      return true;
+  let direccion = document.getElementById('direccion').value.trim();
+  let texto;
+  let expresion = /^[a-zA-Z0-9\s'#,-]*$/;
 
-    }
-    
-    
+  if (!direccion) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Por favor, ingrese su dirección de residencia.</span>';
+    document.getElementById('texto4').innerHTML = texto;
+    return false;
+  } else if (direccion.length < 5) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Su dirección de residencia debe tener al menos 5 caracteres.</span>';
+    document.getElementById('texto4').innerHTML = texto;
+    return false;
+  } else if (!expresion.test(direccion)) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese una dirección de residencia válida.</span>';
+    document.getElementById('texto4').innerHTML = texto;
+    return false;
+  } else {
+    document.getElementById('texto4').innerHTML = '';
+    return true;
+
+  }
+
+
 };
 
 const validateTelefono = () => {
@@ -127,7 +127,7 @@ const validateEstado = () => {
   let estado = document.getElementById('estado').value;
   let texto;
 
-  if (estado === null || estado === ''  || estado.length === 0) {
+  if (estado === null || estado === '' || estado.length === 0) {
     texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Seleccione un valor</span>';
     document.getElementById('texto8').innerHTML = texto;
     return false;
@@ -138,35 +138,52 @@ const validateEstado = () => {
 };
 
 
-  const validateCedula = () => {
-    let cedula = document.getElementById('cedula').value;
-    let texto;
-    let expresion = /[0-9]/;
-  
-    if (cedula === null || cedula === '' || cedula.length === 0) {
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese su cédula</span>';
-      document.getElementById('texto2').innerHTML = texto;
-      return false;
-    } else if (!expresion.test(cedula)) {
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>';
-      document.getElementById('texto2').innerHTML = texto;
-      return false;
-    } else if (cedula.length < 3) {
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Tiene que ser mayor a 3 valores numericos</span>';
-      document.getElementById('texto2').innerHTML = texto;
-      return false;
-    } else if (cedula.length > 10) {
-      texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Su cédula tiene que ser menor a 10 numeros</span>';
-      document.getElementById('texto2').innerHTML = texto;
-      return false;
-    
-    }else{
-      document.getElementById('texto2').innerHTML = '';
-      return true;
-    }
-    
-   
-    
-  };
-  
-  
+const validateCedula = () => {
+  let cedula = document.getElementById('cedula').value;
+  let texto;
+  let expresion = /[0-9]/;
+
+  if (cedula === null || cedula === '' || cedula.length === 0) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese su cédula</span>';
+    document.getElementById('texto2').innerHTML = texto;
+    return false;
+  } else if (!expresion.test(cedula)) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>';
+    document.getElementById('texto2').innerHTML = texto;
+    return false;
+  } else if (cedula.length < 3) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Tiene que ser mayor a 3 valores numericos</span>';
+    document.getElementById('texto2').innerHTML = texto;
+    return false;
+  } else if (cedula.length > 10) {
+    texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Su cédula tiene que ser menor a 10 numeros</span>';
+    document.getElementById('texto2').innerHTML = texto;
+    return false;
+
+  } else {
+    document.getElementById('texto2').innerHTML = '';
+    return true;
+  }
+
+
+
+};
+
+
+function validarTelefono() {
+  var telefono = document.getElementById('Telefono').value;
+  let mensaje = "";
+  if (telefono.trim() === '') {
+    mensaje = "Ingrese el número de teléfono"
+    document.getElementById('texto1').innerText = mensaje
+  } else if (!/^\d+$/.test(telefono)) {
+    mensaje = "El número de teléfono debe contener solo números"
+    document.getElementById('texto1').innerText = mensaje;
+  } else if (telefono.length < 7 || telefono.length > 10) {
+    mensaje = "el número de teléfono debe ser mayor a 7 dígitos y menor a 10";
+    document.getElementById('texto1').innerText = mensaje;
+  } else {
+    document.getElementById('texto1').innerText = mensaje;
+  }
+}
+
