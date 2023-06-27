@@ -1,19 +1,4 @@
 
-const validateForm = () => {
-  const validatefechaCompraResult = validatefechaCompra();
-  const validatefechaRegistroResult = validatefechaRegistro();
-  const validateproveedorResult = validateproveedor();
-  const validateproductoResult = validateproducto();
-  const validateprecioCompraResult = validateprecioCompra();
-  const validateprecioVentaResult =  validateprecioVenta();
-  const validatetotalCompraResult = validatetotalCompra();
-
-    console.log("validate fechaCompra " , validatefechaCompra);
-
-    if (validatefechaCompraResult && validatefechaRegistroResult && validateproveedorResult && validateproductoResult && validateprecioCompraResult && validateprecioVentaResult && validatetotalCompraResult) {
-      window.location.href = "/compras";
-    }
-  }
 const validatefechaCompra = () => {
     let fechaCompra = document.getElementById('fechaCompra').value;
     let texto;
@@ -114,6 +99,31 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
  
 };
 
+
+const validateiva = () => {
+  let iva = document.getElementById('iva').value.trim();
+  let texto;
+  let expresion = /[0-9]/;
+
+if (iva === null || iva === '' || iva.length === 0) {
+  texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese el iva de producto</span>';
+  document.getElementById('textoI').innerHTML = texto;
+  return false;
+} else if (!expresion.test(precioCompra)) {
+  texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>';
+  document.getElementById('textoI').innerHTML = texto;
+  return false;   
+}else{
+  document.getElementById('textoI').innerHTML = '';
+  return true;
+}
+ 
+ 
+};
+
+
+
+
   const validatefechaRegistro = () => {
     let fechaRegistro = document.getElementById('fechaRegistro').value;
     let texto;
@@ -188,14 +198,14 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
   
   if (totalCompra === null || totalCompra === '' || totalCompra.length === 0) {
     texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese el valor de la compra</span>';
-    document.getElementById('texto6').innerHTML = texto;
+    document.getElementById('textoF').innerHTML = texto;
     return false;
   } else if (!expresion.test(totalCompra)) {
     texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese solo caracteres válidos (números)</span>';
-    document.getElementById('texto6').innerHTML = texto;
+    document.getElementById('textoF').innerHTML = texto;
     return false;   
   }else{
-    document.getElementById('texto6').innerHTML = '';
+    document.getElementById('textoF').innerHTML = '';
     return true;
   }
    
@@ -254,3 +264,4 @@ if (precioCompra === null || precioCompra === '' || precioCompra.length === 0) {
         }
       });
     }
+    
