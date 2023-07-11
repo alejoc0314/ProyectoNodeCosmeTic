@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="/css/adminlte.css">
+  
+  <style>
+    .centered-button {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .wide-button {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="/img/logosinfondo.png" style="max-width: 80%; max-height: 80%" >
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Recuperar Contraseña</p>
+
+        <form>
+          <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" id="email" placeholder="Email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 centered-button">
+              <button type="button" class="btn btn-primary wide-button" onclick="login()" id="recuperar" >Enviar Link</button>
+              
+<script>
+  document.getElementById('recuperar').addEventListener('click', function() {
+    window.location.href = '/cambiarClave'; // Reemplaza '/compras' con la URL de la lista de compras
+  });
+</script>
+            </div>
+          </div>
+
+          <script src="../js/sesion.js"></script>
+        </form>
+
+        <!-- /.social-auth-links -->
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>   
+  <!-- AdminLTE App -->
+  <script src="/js/adminlte.min.js"></script>
+</body>
+</html>
+

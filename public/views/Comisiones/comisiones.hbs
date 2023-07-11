@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{> header}}
+    <title>{{ titulo }}</title>
+</head>
+
+<body class="hold-transition sidebar-mini" onload="listarDatos()">
+    <div class="wrapper">
+        {{> navbar}}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Comisiones</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/home">{{titulo}}</a></li>
+                                <li class="breadcrumb-item active">{{ consecutivo }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Comisiones registradas en el sistema</h3>
+                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -3.5%">
+                                        <a class="btn btn-success boton-registro" href="/registroComisiones">
+                                            Agregar Comisión</a>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                     <div class="row">
+                                            <div class="">
+                                                <div class="form-group" style="padding-left: 6px;">
+                                                    <label for="searchInput">Buscar:</label>
+                                                    <input type="text" id="searchInput" class="form-control"
+                                                        placeholder="Ingrese término de búsqueda" style="width: 110%;">
+
+                                                </div>
+                                            </div>
+                                        <div style="padding-left:40px; padding-top:30px" >
+                                            <button class="btn btn-success" id="btnGenerarEXCEL" >
+                                                <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar
+                                                Excel
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Nombre</th>
+                                                <th>Total Ventas</th>
+                                                <th>Fecha</th>
+                                                <th>Porcentaje</th>
+                                                <th>Comisión </th>
+                                                <th>Observación</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contenido">
+                                            
+                                        </tbody>
+                                        <tfoot>
+                                           
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <!-- /.content-wrapper -->
+        {{> footer}}
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+ 
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.min.js"></script>
+
+    <!-- Page specific script -->
+   
+    <script src="/js/funcionesComisiones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
+    <script src="/js/excelComisiones.js"></script>
+    <script src="/js/xlxx.js"></script>
+    <script>
+$(document).ready(function() {
+    // Obtener la referencia al campo de búsqueda
+    var searchInput = $("#searchInput");
+
+    // Obtener la referencia a la tabla y su contenido
+    var tableBody = $("#contenido");
+
+    // Función de búsqueda
+    function buscar() {
+        var searchTerm = searchInput.val().toLowerCase();
+
+        // Iterar sobre cada fila de la tabla
+        tableBody.find("tr").each(function() {
+            var rowData = $(this).text().toLowerCase();
+
+            // Mostrar u ocultar filas según el término de búsqueda
+            if (rowData.indexOf(searchTerm) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    }
+
+    // Escuchar el evento de cambio en el campo de búsqueda
+    searchInput.on("keyup", function() {
+        buscar();
+    });
+});
+</script>
+</body>
+
+</html>

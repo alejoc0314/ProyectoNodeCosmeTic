@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{> header}}
+    <title>{{titulo}}</title>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        {{> navbar}}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>{{subtitulo}}</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active">{{consecutivo}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">{{subtitulo}}<p> Los campos señalados con <span
+                                        style="color: red; vertical-align: super;">*</span> son obligatorios</p></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <input type="hidden" class="form-control" id="id" style="width: 100%;" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="empleado">Empleado</label>
+                                        
+                                        <input type="empleado" class="form-control" id="empleado" style="width: 100%;" readonly>
+                                    </div>
+                                    <div class="texto4" id="texto4"></div>
+                                </div>
+                               <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="total_ventas">Total ventas<span
+                                        style="color: red; vertical-align: super;">*</span></label>
+                                        <input type="total_ventas" class="form-control" id="total_ventas"
+                                            placeholder="Total ventas" style="width: 100%;"  />
+                                    </div>
+                                    <div class="texto2" id="texto2"></div>
+                                </div>  
+                                <!-- /.form-group -->
+                            </div>
+
+                            <!-- /.col -->
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="porcentaje">Porcentaje<span
+                                        style="color: red; vertical-align: super;">*</span></label>
+                                        <select class="form-control " id="porcentaje" style="width: 100%;">
+                                            <option value="" disabled selected>Elija un porcentaje</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="texto3" id="texto3"></div>
+                                </div>  
+                                <!-- /.form-group -->
+                               <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="total_comision">Total comisión</label>
+                                        <input type="total_comision" class="form-control" id="total_comision"
+                                            placeholder="Total comisión" style="width: 100%;" readonly />
+                                    </div>
+                                    <div class="texto5" id="texto5"></div>
+                                    <input type="text" id="_id" readonly style="display: none;">
+                                    
+                                    <!-- /.form-group -->
+                                    
+                                </div>
+                                <!-- /.form-group -->
+
+                            </div>
+
+                            <div class="row">
+
+                                <!-- /.col -->
+                                 <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="observacion">Observaciones</label>
+                                        <input type="observacion" class="form-control" id="observacion"
+                                            placeholder="Observaciones" style="width: 100%;"  />
+                                    </div>
+                                    <div class="texto6" id="texto6"></div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="fecha_comi">Fecha (AAAA-MM-DD)</label>
+                                        <input type="fecha_comi" class="form-control" id="fecha_nueva" readonly
+                                            placeholder="Fecha" style="width: 100%;"  />
+                                        <input type="fecha_comi" class="form-control" id="fecha_comi"
+                                            placeholder="Fecha" style="width: 100%;"  readonly/>
+                                    </div>
+                                    <div class="texto7" id="texto7"></div>
+                                </div>
+
+                               
+                            </div>
+                            
+
+                            <div class="row"></div>
+                            <button id="btnActualizar" class="sendbtn btn btn-success" type="button"
+                                name="action">Actualizar
+                            </button>
+                            <a href="/comisiones"><button class="sendbtn btn btn-secondary" type="button"
+                                    > Regresar</button></a>
+
+                            <script src="../../js/funcionesComisiones.js"></script>
+                        </div>
+
+
+                        <!-- /.card-body -->
+                    </div>
+
+                </div>
+
+
+        </div>
+
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{> footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false, "autoWidth": false, "buttons": ["copy", "csv",
+                    "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true, "lengthChange": false,
+                "searching": false, "ordering": true, "info": true, "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

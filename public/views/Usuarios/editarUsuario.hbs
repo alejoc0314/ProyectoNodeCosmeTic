@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{> header}}
+    <title>{{titulo}}</title>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+          
+        </nav>
+        <!-- /.navbar -->
+
+        {{> navbar}}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>{{subtitulo}}</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active">{{consecutivo}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                            
+                       
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre de Usuario
+                                            
+                                        </label>
+                                        <input type="text" class="form-control" id="nombre_Usuario"
+                                            placeholder="Digite su nombre de usuario" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto" id="texto"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="correo">Correo</label>
+                                        <input type="email" class="form-control" id="correo" placeholder="Digite su Correo"
+                                            style="width: 100%;" autocomplete="off" />
+                                    </div>
+                                    <div class="texto3" id="texto3"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <select class="form-control select2bs4" style="width: 100%;">
+                                            <option selected="selected">Elija el estado</option>
+                                            <option>Activo</option>
+                                            <option>Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="rol">Rol</label>
+                                        <select class="form-control select2bs4" style="width: 100%;">
+                                            <option selected="selected">Elija el Rol</option>
+                                            <option>Administrador</option>
+                                            <option>Vendedor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="clave">Contraseña</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="clave" placeholder="Digite su contraseña" style="width: 100%;" autocomplete="off" />
+                <div class="input-group-append">
+                    <span class="input-group-text" id="toggleClave">
+                        <i class="fa fa-eye"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="texto5" id="texto5"></div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="confirmarClave">Confirmar Contraseña</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="confirmarClave" placeholder="Confirme su contraseña" style="width: 100%;" autocomplete="off" />
+                <div class="input-group-append">
+                    <span class="input-group-text" id="toggleConfirmarClave">
+                        <i class="fa fa-eye"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="texto5" id="texto5"></div>
+    </div>
+</div>
+
+<script>
+    // Función para mostrar u ocultar la contraseña
+    function togglePasswordVisibility(inputId, toggleId) {
+        var input = document.getElementById(inputId);
+        var toggle = document.getElementById(toggleId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            toggle.innerHTML = '<i class="fa fa-eye-slash"></i>';
+        } else {
+            input.type = "password";
+            toggle.innerHTML = '<i class="fa fa-eye"></i>';
+        }
+    }
+
+    // Manejadores de eventos para los botones de mostrar/ocultar contraseña
+    document.getElementById("toggleClave").addEventListener("click", function() {
+        togglePasswordVisibility("clave", "toggleClave");
+    });
+
+    document.getElementById("toggleConfirmarClave").addEventListener("click", function() {
+        togglePasswordVisibility("confirmarClave", "toggleConfirmarClave");
+    });
+</script>
+
+                             <div class="row"></div>
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-success" id="actualizar" onclick="showActualizar()">Actualizar</a>
+
+                                       
+                                       <button class="sendbtn btn btn-secondary ml-2" id="cancelar" >Regresar</button>
+
+                                            <script>
+                                            document.getElementById('cancelar').addEventListener('click', function() {
+                                                window.location.href = '/usuarios'; // Reemplaza '/compras' con la URL de la lista de compras
+                                            });
+
+                                              
+                                            </script>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        {{> footer}}
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables & Plugins -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/funcionesUsuarios.js"></script>
+</body>
+
+</html>

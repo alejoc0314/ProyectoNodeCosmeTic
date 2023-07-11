@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{> header}}
+    <title>{{titulo}}</title>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        {{> navbar}}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>{{subtitulo}}</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active">{{consecutivo}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">{{subtitulo}}</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                   <div class="card-body">
+                        <input type="hidden" class="form-control" id="id" style="width: 100%;" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cedula">Cedula<span class="required-asterisk">*</span></label>
+                                        <input type="text"  oninput="validateCedula()" class="form-control" id="cedula"
+                                            placeholder="Digite su Cedula" style="width: 100%;" />
+                                    </div>
+                                   <div class="texto2" id="texto2"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre<span class="required-asterisk">*</span></label>
+                                        <input type="text" oninput="validateNombre()" class="form-control" id="nombre"
+                                            placeholder="Digite su Nombre" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto" id="texto"></div>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+
+                            <!-- /.col -->
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="correo">Correo<span class="required-asterisk">*</span></label>
+                                        <input type="text" oninput="validateCorreo()" class="form-control" id="correo"
+                                            placeholder="Digite su Correo" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto3" id="texto3"></div>
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="direccion">Direccion<span class="required-asterisk">*</span></label>
+                                        <input type="text" oninput="validateDireccion()" class="form-control" id="direccion"
+                                            placeholder="Digite su Direccion" style="width: 100%;" />
+                                    </div>
+                                    <div class="texto4" id="texto4"></div>
+                                </div>
+                                <!-- /.form-group -->
+                 
+                            </div>
+
+                            <div class="row">
+
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="telefono">Telefono<span class="required-asterisk">*</span></label>
+                                        <input type="telefono" oninput="validateTelefono()" class="form-control" id="telefono"
+                                            placeholder="Digite su telefono" style="width: 100%;" />
+                                        
+                                    </div>
+                                    <div class="texto5" id="texto5"></div>
+                                    </br>
+                                    <!-- /.form-group -->
+                                </div>
+                                
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="observacion">Observacion<span class="required-asterisk">*</span></label>
+                                        <input type="text" class="form-control" id="observacion"
+                                            placeholder="Digite su observacion" style="width: 100%;" />
+                                    </div>
+                                    <!-- /.form-group -->
+
+                                </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col-md-6"></div>
+                                <div class="form-group">
+                                    <label for="estado">Estado<span class="required-asterisk">*</span></label>
+                                    <select type="text" oninput="validateEstado()" class="form-control" id="estado"
+                                            style="width: 20%;" >
+                                    <option value="" disabled selected>Elija el estado</option>
+                                    <option value="true">activo</option>
+                                    <option value="false">inactivo</option>
+                                    </select>
+                                                                        <div class="texto8" id="texto8"></div>
+
+                               </div>
+                               
+                                 <div class="row"></div>
+                                    <div class="col-lg-12">
+                                    <input class="sendbtn btn btn-success" id="btnActualizar" type="button" value="Editar" onclick="validateForm(false)">
+                                    <button class="sendbtn btn btn-secondary" onclick="goBack()">Regresar</button>   
+                                    </div>     
+                                   <script src="../../js/funcionesEmpleados.js"></script>
+                                   <script src="../../js/validacionEmpleado.js"></script>
+                                    
+
+                                    
+                                <!-- /.card-body -->
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{> footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+  <script>
+function goBack() {
+  history.back();
+}
+</script>
+   
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></scri>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/js/demo.js"></script>
+    <!-- Page specific script -->
+
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

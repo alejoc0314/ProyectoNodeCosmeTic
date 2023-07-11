@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{> header}}
+    <title>{{ titulo }}</title>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <script>
+    // Código JavaScript para ejecutar después de cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      listarDatos();
+    });
+  </script>
+    <div class="wrapper">
+
+       {{> navbar}}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Empleados</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/home">{{titulo}}</a></li>
+                                <li class="breadcrumb-item active">{{ consecutivo }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Empleados registrados en el sistema</h3>
+                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -2%"> <a
+                                            class="btn btn-success boton-registro" href="/registroEmpleados">
+                                            Agregar Empleado</a>
+                                           
+                                    </div>
+                               </div>
+                                  <div class="">
+                                    <div class="form-group" style="padding-left: 6px;">
+                                        <label for="searchInput">Buscar:</label>
+                                        <input type="text" id="searchInput" class="form-control"
+                                            placeholder="Ingrese término de búsqueda" style="width: 20%;">
+
+                                    </div>
+                                </div>     
+                                <br>
+                                
+                                <div class="col-lg-12" style=" width: 16%; margin-left: 1%">
+                                <button class="btn btn-success" id="btnGenerarExcel" >
+                                    <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar Excel
+                                </button>
+                               </div>                       
+                                <!-- /.card-header -->
+                                 <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Cedula</th>
+                                                <th>Nombre</th>
+                                                <th>Correo</th>
+                                                <th>Direccion</th>
+                                                <th>Telefono</th>
+                                                <th>Observacion</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contenido">
+                                                                                      
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        
+        <!-- /.content-wrapper -->
+        {{> footer}}
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <script src="../../js/funcionesEmpleados.js"></script>
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/jszip/jszip.min.js"></script>
+    <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.min.js"></script>
+    <script src="../../xlsx/xlsx.js"></script>
+    <script src="../../js/excelEmpleados.js"></script>
+      
+<!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    
+    <!-- Page specific script -->
+    <script>
+$(document).ready(function() {
+    // Obtener la referencia al campo de búsqueda
+    var searchInput = $("#searchInput");
+
+    // Obtener la referencia a la tabla y su contenido
+    var tableBody = $("#contenido");
+
+    // Función de búsqueda
+    function buscar() {
+        var searchTerm = searchInput.val().toLowerCase();
+
+        // Iterar sobre cada fila de la tabla
+        tableBody.find("tr").each(function() {
+            var rowData = $(this).text().toLowerCase();
+
+            // Mostrar u ocultar filas según el término de búsqueda
+            if (rowData.indexOf(searchTerm) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    }
+
+    // Escuchar el evento de cambio en el campo de búsqueda
+    searchInput.on("keyup", function() {
+        buscar();
+    });
+});
+</script>
+</body>
+
+</html>
