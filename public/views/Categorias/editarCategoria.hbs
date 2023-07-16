@@ -20,7 +20,7 @@
 
 <body class="hold-transition sidebar-mini">
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
+     <script type="text/javascript"  src="/js/validacionesCategorias.js"></script>
     <div class="wrapper">
         {{> navbar}}
 
@@ -62,6 +62,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <input type="hidden" class="form-control"  id="id" style="width 100%">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -74,10 +75,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
-                                         <select class="form-control select2bs4" style="width: 100%;">
+                                         <select class="form-control select2bs4" style="width: 100%;" id="estado">
                                             <option selected="selected">Elija el estado</option>
-                                            <option>Activo</option>
-                                            <option>Inactivo</option>
+                                            <option value="true">Activo</option>
+                                            <option value="false">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>
@@ -93,7 +94,7 @@
 
                                  <div class="row"></div>
                                     <div class="col-lg-12">
-                                            <a class="btn btn-success" id="actualizar" onclick="showActualizar()">
+                                            <a class="btn btn-success" id="actualizar" onclick="actualizar()" >
                                             Actualizar</a>
 
                                       
@@ -140,7 +141,7 @@
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+<script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->

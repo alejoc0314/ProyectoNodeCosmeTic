@@ -17,3 +17,4 @@ cerrar = () => {
 
 const boton = document.querySelector('#botoncerrar');
 boton.addEventListener('click', cerrar);
+

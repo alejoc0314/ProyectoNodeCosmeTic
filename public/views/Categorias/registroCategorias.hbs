@@ -20,7 +20,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
+    <script type="text/javascript"  src="/js/validacionesCategorias.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="wrapper">
         {{> navbar}}
@@ -75,10 +75,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
-                                         <select class="form-control select2bs4" style="width: 100%;">
+                                         <select class="form-control select2bs4" style="width: 100%;"  id="estado">
                                             <option selected="selected">Elija el estado</option>
-                                            <option>Activo</option>
-                                            <option>Inactivo</option>
+                                            <option value="true">Activo</option>
+                                            <option value="false">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
 
                                  <div class="row"></div>
                                     <div class="col-lg-12">
-                                            <a class="btn btn-success" id="registrar" onclick="showRegistrar()"> 
+                                            <a class="btn btn-success" id="registrar" onclick="registrar()" onclick="showRegistrar()"> 
                                             Registrar</a>
 
                                        
@@ -142,7 +142,7 @@
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+<script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->

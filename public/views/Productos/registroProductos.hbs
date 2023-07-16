@@ -50,11 +50,39 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="categoria">Categoria <span style="color:red">*</span></label>
-                                        <select oninput="validateCategoria()" class="form-control "
-                                            id="categoriaProductos" style="width: 100%;">
+                                        <select  class="form-control "
+                                            id="categoria" style="width: 100%;">
                                             <option value="" disabled selected>Elija una categoria</option>
 
                                         </select>
+                                        <script>
+                                        function cargarCategorias() {
+                                            let urlcategoria = 'https://apiparamodulos.onrender.com/api/categoria';
+                                            fetch(urlcategoria, {
+                                            method: 'GET',
+                                            mode: 'cors',
+                                            headers: { "Content-type": "application/json; charset=UTF-8" }
+                                            })
+                                            .then((resp) => resp.json())
+                                            .then(function(data) {
+                                                const selectCategoria = document.getElementById('categoria');
+                                                const categorias = data.categorias;
+                                                categorias.forEach(function(categoria) {
+                                                const option = document.createElement('option');
+                                                option.value = categoria.id; // Asigna el valor de la categoría según tu estructura de datos
+                                                option.textContent = categoria.nombre; // Asigna el nombre de la categoría según tu estructura de datos
+                                                selectCategoria.appendChild(option);
+                                                })
+                                            })
+                                            .catch(function(error) {
+                                                console.error('Error al cargar las categorías:', error);
+                                            });
+                                            
+                                        }
+
+                                        cargarCategorias();
+                                        </script>
+
                                     </div>
                                     <div class="texto7" id="texto7"></div>
                                 </div>

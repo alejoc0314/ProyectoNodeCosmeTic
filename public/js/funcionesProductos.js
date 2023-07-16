@@ -338,7 +338,7 @@ const eliminar = (id) => {
 const obtenerCategoriaProductos = async () => {
   try {
     // const response = await fetch("http://localhost:8082/api/categoriaProducto", {
-    const response = await fetch("https://api-cosmetic.onrender.com/api/categoriaProducto", {
+    const response = await fetch("https://apiparamodulos.onrender.com/api/categoria", {
 
       method: "GET",
       mode: "cors",

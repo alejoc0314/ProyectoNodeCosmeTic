@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const hbs = require('hbs');
 const axios = require('axios');
+const cors = require('cors')
 
 const port = 8081;
 
@@ -46,9 +47,20 @@ hbs.registerPartials(__dirname + '/public/views/partials');
 
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(cors({
+    origin: 'http://localhost:8081',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type',
+  }));
+
+
 app.listen(port, () => {
     console.log('listening on port ' + port);
 });
+
+
+
 
 // Página de login
 
@@ -204,88 +216,40 @@ app.get('/detalles', (req, res) => {
 
 //pagina registro Categoria
 app.get('/registroCategorias', (req, res) => {
-
-    res.render('Categorias/registroCategorias', {
-        titulo: 'CosmeTIC',
-        user_name: 'Marcela Morales',
+    
+    res.render('Categorias/registroCategorias', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Marcela Morales', 
         consecutivo: 'registroCategorias'
     });
 })
 
 app.get('/editarCategoria', (req, res) => {
-
-    res.render('Categorias/editarCategoria', {
-        titulo: 'CosmeTIC',
-        user_name: 'Marcela Morales',
+    
+    res.render('Categorias/editarCategoria', { 
+        titulo : 'CosmeTIC',
+        user_name : 'Marcela Morales', 
         consecutivo: 'editarCategorias'
     });
 })
 
-
 // pagina de categorias
-
 app.get('/categorias', (req, res) => {
 
-    const Categorias = [
-        {
-            id_proveedor: 1,
-            nombre_categoria: 'Labiales',
-            estado_categoria: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }, {
-            id_proveedor: 2,
-            nombre_categoria: 'Bases',
-            estado_categoria: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }, {
-            id_proveedor: 3,
-            nombre_categoria: 'Cuidado Personal',
-            estado_categoria: 'Activo',
-            observacion: 'esta laborando actualmente'
-        }];
-    res.render('Categorias/categorias', {
-        titulo: 'CosmeTIC | Categorias',
-        user_name: 'Marcela Morales',
-        consecutivo: 'Categorias',
-        lista_categorias: Categorias
+    res.render('Categorias/categorias', { 
+        titulo : 'CosmeTIC | Categorias',
+        user_name : 'Marcela Morales', 
+        consecutivo: 'Categorias'
     });
 })
-
 // compras
 
 app.get('/compras', (req, res) => {
 
-    const compras = [
-        {
-            id_compra: 1,
-            id_proveedor: 'Marcela Morales',
-            numero_factura: 1229,
-            fecha_compra: 02 - 05 - 2023,
-            fecha_registro: 03 - 05 - 2023,
-            total_compra: 102.000,
-            estado_compra: 'Activo'
-        }, {
-            id_compra: 2,
-            id_proveedor: 'Natalia Marulanda',
-            numero_factura: 1230,
-            fecha_compra: 02 - 03 - 2023,
-            fecha_registro: 03 - 03 - 2023,
-            total_compra: 234.000,
-            estado_compra: 'Activo'
-        }, {
-            id_compra: 3,
-            id_proveedor: 'Andres Jaramillo',
-            numero_factura: 1231,
-            fecha_compra: 05 - 04 - 2023,
-            fecha_registro: 06 - 04 - 2023,
-            total_compra: 420.000,
-            estado_compra: 'Activo'
-        }];
     res.render('Compras/compras', {
         titulo: 'CosmeTIC | Productos',
         user_name: 'Marcela Morales',
-        consecutivo: 'Compras',
-        lista_compras: compras
+        consecutivo: 'Compras'
     });
 })
 

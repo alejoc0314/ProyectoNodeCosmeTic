@@ -16,14 +16,21 @@
     <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
-    
     <link rel="stylesheet" href="/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script type="text/javascript"  src="/js/funcionesCategorias.js"></script>
+     <script>
+    // Código JavaScript para ejecutar después de cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      listarDatos();
+    });
+  </script>
     <div class="wrapper">
        {{> navbar}}
         <!-- Content Wrapper. Contains page content -->
@@ -63,6 +70,8 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
+                                        <input type="hidden" id="observacion_">
+
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
@@ -72,20 +81,8 @@
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            {{#each lista_categorias}}
-                                            <tr>
-                                                <td>{{ id_categoria }}</td>
-                                                <td>{{ nombre_categoria }}</td>
-                                                <td>{{estado_categoria}}</td>
-                                                <td>{{ observacion_categoria }}</td>
-
-                                                <td>
-                                                    <a class='btn btn-primary' href="/editarCategoria" ><i class="bi bi-pencil-square"></i></a>
-                                                    <a class="btn btn-warning" onclick="showConfirmationDialog()" ><i class="bi bi-toggle-on"></i></td></a>
-                                                </td>
-                                            </tr>
-                                            {{/each}}
+                                        <tbody id="contenido">
+                                           
                                         </tbody>
                                     
                                     </table>
@@ -102,6 +99,30 @@
             </section>
             <!-- /.content -->
         </div>
+        <!-- Agrega el siguiente código en tu archivo HTML -->
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmar cambio de estado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="observacionInput" class="form-label">Observación</label>
+          <input type="text" class="form-control" id="observacionInput" placeholder="Ingrese una observación">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="confirmarCambioEstado()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <!-- /.content-wrapper -->
         <footer class="main-footer">

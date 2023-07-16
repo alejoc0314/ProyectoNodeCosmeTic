@@ -32,7 +32,7 @@ const validateForm = (isNew) => {
 const validateNombre = () => {
   let nombre = document.getElementById('nombre').value;
   let texto;
-  let expresion = /^[a-zA-Z\s]+$/;
+  let expresion = /^[a-zA-Z0-9\s]+$/;
 
   if (nombre === null || nombre === '' || nombre.length === 0) {
     texto = '<span style="color: #fff; background-color: #e6213f; padding: 3px;border-radius: 3px;">Ingrese su nombre</span>';
@@ -153,7 +153,7 @@ const validateCantidad = () => {
 
 
 const validateCategoria = () => {
-  let categoriaProductos = document.getElementById('categoriaProductos').value;
+  let categoriaProductos = document.getElementById('categoria').value;
   let texto;
 
   if (categoriaProductos === null || categoriaProductos === '' || categoriaProductos.length === 0) {
