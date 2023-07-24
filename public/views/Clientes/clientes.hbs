@@ -79,7 +79,7 @@
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="listaClientes" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
@@ -91,6 +91,7 @@
                                                 <th>Dirección</th>
                                                 <th>Teléfono</th>
                                                 <th>Estado</th>
+                                                <th>Nota crédito</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -99,13 +100,14 @@
                                             <tr>
                                                 <td>{{ id_Cliente }}</td>
                                                 <td>{{nit_O_Cedula_Cliente}}</td>
-                                                <td>{{nombre_Empresa}}</td>
-                                                <td>{{ nombre_Cliente }}</td>
-                                                <td>{{ apellido_Cliente }}</td>
+                                                 <td>{{ nombre_Cliente }}</td>
+                                                  <td>{{ apellido_Cliente }}</td>
+                                                <td>{{nombre_Cliente}}</td>
                                                 <td>{{ correo_Cliente }}</td>
-                                                <td>{{telefono_Cliente}}</td>
                                                 <td>{{direccion_Cliente}}</td>
+                                                <td>{{telefono_Cliente}}</td>
                                                 <td>{{estado_Cliente}}</td>
+                                                <td>0</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a class='btn btn-primary' href="/editarCliente" ><i class="bi bi-pencil-square"></i></a>

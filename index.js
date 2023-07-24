@@ -545,13 +545,13 @@ app.get('/registroClientes', (req, res) => {
 
 
 //Registro de Devoluciones 
-app.get('/registroDevoluciones', (req, res) => {
+app.get('/creardevolucion', (req, res) => {
 
-    res.render('Devoluciones/registroDevoluciones', {
+    res.render('Devoluciones/creardevolucion', {
         titulo: 'CosmeTIC',
         user_name: 'Mariana Granados',
-        consecutivo: 'registroDevoluciones',
-        subtitulo: 'Registro Devoluciones'
+        consecutivo: 'Crear Devolución',
+        subtitulo: 'Crear Devolución'
     });
 })
 //editar usuarios

@@ -48,13 +48,15 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{consecutivo}} en el sistema</h3>
-                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -8%">
-                                        <a class="btn btn-secondary" href="/ventas">Regresar</a>
-                                    </div>
+                            <div class="card-header">
+                                <h3 class="card-title">{{consecutivo}} en el sistema</h3>
+                                <div class="col-lg-12" style="float: right; width: 32%; margin-right: -8%">
+                                    <a class="btn btn-success text-nowrap" href="/creardevolucion">
+                                        Crear devolución</a>
+                                    <a class="btn btn-secondary ml-2" href="/ventas">Regresar</a>
                                 </div>
-                                <!-- /.card-header -->
+                            </div>
+                                                            <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="row">
                                         {{#each detalleVenta}}
@@ -117,7 +119,7 @@
                                                         <th>Cantidad</th>
                                                         <th>Precio Venta</th>
                                                         <th>Precio Total</th>
-                                                        <th>Acciones</th>
+                                                       
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -127,11 +129,7 @@
                                                         <td>{{ this.cantidad }}</td>
                                                         <td>{{ this.precioVenta }}</td>
                                                         <td>{{ this.precioTotal }}</td>
-                                                        <td>
-                                                            <button class='btn btn-warning'
-                                                                onclick="eliminarProducto('{{this._id}}')">
-                                                                <i class="fa-solid fa-delete-left"></i></button>
-                                                        </td>
+                                                      
                                                     </tr>
                                                     {{/each}}
                                                 </tbody>

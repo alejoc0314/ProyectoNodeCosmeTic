@@ -4,15 +4,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{> header}}
     <title>{{ titulo }}</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    
+    <link rel="stylesheet" href="/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script type="text/javascript"  src="/js/funcionesDevoluciones.js"></script>
     <div class="wrapper">
-
        {{> navbar}}
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -20,11 +34,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Devolución</h1>
+                            <h1>Devoluciones</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/home">{{titulo}}</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">{{ consecutivo }}</li>
                             </ol>
                         </div>
@@ -34,123 +48,91 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="search-bar">
-                    <input type="text" placeholder="Buscar número de factura">
-                    <button type="submit" class="btn btn-primary text-nowrap">Buscar</button>
-                </div>
-                <div class="card-body">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="cliente">Cliente</label>
-                                <input type="number" class="form-control" id="totalPedido" style="width: 100%;" readonly
-                                    placeholder="Pepelería Colores" />
-                            </div>
-                            <div class="texto5" id="texto1"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="fecha_venta">Fecha venta</label>
-                                <input type="number" class="form-control" id="totalPedido" style="width: 100%;"
-                                    readonly placeholder="26/06/2023" />
-                            </div>
-                            <div class="texto5" id="texto2"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label for="tipo_pago">Tipo de pago</label>
-                                    <input type="number" class="form-control" id="totalPedido" style="width: 100%;"
-                                        readonly placeholder="Crédito" />
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Devoluciones registradas en el sistema</h3>
+                                    <div class="col-lg-12" style="float: right; width: 16%; margin-right: -1.2%">
+                                    
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="texto5" id="texto4"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="total_venta">Total venta</label>
-                                <input type="number" class="form-control" id="totalPedido" style="width: 100%;"
-                                    readonly placeholder="60000" />
-                            </div>
-                            <div class="texto5" id="texto3"></div>
-                        </div>
+                                    <div class="row">
+                                            <div class="">
+                                                <div class="form-group" style="padding-left: 6px;">
+                                                    <label for="searchInput">Buscar:</label>
+                                                    <input type="text" id="searchInput" class="form-control"
+                                                        placeholder="Ingrese término de búsqueda" style="width: 110%;">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="empleado">Producto <span style="color:red">*</span></label>
-                                <select type="text" class="form-control" id="empleado"
-                                    placeholder="Seleccione el empleado" style="width: 100%;">
-                                    <option value="">Seleccione el producto agregar a la venta
-                                    </option>
-                                    <option value="labial rojo">Labial rojo</option>
-                                    <option value="rubor rocita">Rubor pasión</option>
-                                    <option value="labial rosa">Labial rosa</option>
-                                </select>
-                            </div>
-                            <div class="texto5" id="texto2"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="cantidad">Cantidad <span style="color:red">*</span></label>
-                            <div class="form-group" style="display:flex">
-                                <input type="number" class="form-control" id="cantidad"
-                                    placeholder="Ingrese la cantidad de productos" />
-                                <div class="col-md-6">
-                                    <button id="aggProd" class="btn btn-success" style="width: 102.5%"
-                                        onclick="agregarProducto()">Agregar
-                                        producto</button>
+                                                </div>
+                                            </div>
+                                        <div style="padding-left:40px; padding-top:30px" >
+                                            <button class="btn btn-success" id="btnGenerarExcel">
+                                                <i class="fas fa-file-excel" style="font-size: 14px;"></i> Descargar
+                                                Excel
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="listaDevoluciones" class="table table-bordered table-striped">
+                                        <thead >
+                                            <tr>
+                                                <th>#Factura de venta</th>
+                                                <th>#Devolución</th>
+                                                <th>#Nota crédito</th>
+                                                <th>$Valor nota crédito</th> 
+                                                <th>Código producto devuelto</th>
+                                                <th>Nombre producto</th>
+                                                <th>Precio venta</th>
+                                                <th>Cantidad devuelta</th>
+                                                <th>Precio total</th>
+                                                <th>Motivo devolución</th>
+                                                <th>Total devolución</th>
+                                                
+                                        </thead>
+                                        <tbody >
+                                           
+                                            <tr>
+                                               <td>777</td>
+                                               <td>01</td>
+                                               <td>01</td>
+                                               <td>28000</td>
+                                               <td>101</td>
+                                               <td>Rubor</td>
+                                               <td>7000</td>
+                                               <td>4</td>
+                                               <td>28000</td>
+                                               <td>Error referencia</td>
+                                               <td>28000</td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
                                 </div>
+                                <!-- /.card-body -->
                             </div>
+                            <!-- /.card -->
                         </div>
+                        <!-- /.col -->
                     </div>
-
-                    <div class="card-body">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Código producto</th>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio unidad</th>
-                                    <th>Precio total</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Labial</td>
-                                    <td>10</td>
-                                    <td>6000</td>
-                                    <td>60000</td>
-                                    <td>
-                                        <button class='btn btn-danger' onclick="eliminarPedido('{{_id}}')"
-                                            title="Devolver productos">
-                                            <i class="fas fa-arrow-left"></i> <!-- Flecha hacia la izquierda -->
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Agrega más filas según sea necesario -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <section>
-                        <div class="row">
-                            <div class="col-md-2" style="display: flex; justify-content: flex-end;">
-                                <button class="sendbtn btn btn-success ml-2" id="guardar">Guardar</button>
-
-
-                                <button class="sendbtn btn btn-secondary ml-2" id="cancelar">Regresar</button>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- /.row -->
                 </div>
+                <!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>
 
         <!-- /.content-wrapper -->
-        {{> footer}}
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; 2023 CosmeTIC.</strong> All rights reserved.
+        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -178,35 +160,41 @@
     <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="https://kit.fontawesome.com/4de2284caa.js" crossorigin="anonymous"></script>
-      <script src="../../js/funcionesDevoluciones.js"></script>
-    
     <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
-
+    <!-- AdminLTE for demo purposes -->
+    <script src="/js/demo.js"></script>
     <!-- Page specific script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-        document.getElementById('cancelar').addEventListener('click', function () {
-            window.location.href = '/home'; // Reemplaza '/compras' con la URL de la lista de compras
-        });
+        function exportarExcel() {
+            // Obtener la tabla de datos
+            const table = document.getElementById('listaDevoluciones');
 
-            document.getElementById('guardar').addEventListener('click', function () {
-            window.location.href = '/ventas'; // Reemplaza '/compras' con la URL de la lista de compras
-        });
+            // Crear una nueva instancia de Workbook de SheetJS
+            const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet JS" });
+
+            // Generar el archivo Excel
+            const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+            // Convertir el archivo a un objeto Blob
+            const blob = new Blob([wbout], { type: 'application/octet-stream' });
+
+            // Crear un enlace para descargar el archivo
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'tabla_devoluciones.xlsx';
+            link.click();
+
+            // Liberar recursos
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }
+
+        // Asigna el evento click al botón de descarga del Excel
+        const btnGenerarExcel = document.getElementById('btnGenerarExcel');
+        btnGenerarExcel.addEventListener('click', exportarExcel);
     </script>
 </body>
 

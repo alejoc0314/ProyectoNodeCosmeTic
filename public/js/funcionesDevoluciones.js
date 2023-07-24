@@ -88,5 +88,23 @@ const validateForm = () => {
     
 }
 
+function showRegistrar() {
+  
+  Swal.fire({
+    title: 'La devolución se guardo con éxito',
+    icon: 'success',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Ok',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    allowEnterKey: false,
+    focusConfirm: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+  
+      window.location.href = '/Devoluciones';
+    }
+  });
+}
 
-exports.validateForm = validateForm;
